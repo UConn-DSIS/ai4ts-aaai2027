@@ -1,573 +1,747 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AAAI'27 Workshop-AI4TS: AI for Time Series Analysis: Theory, Algorithms, and Applications</title>
+  <meta name="description" content="AAAI'27 Workshop-AI4TS: Artificial Intelligence for Time Series Analysis: Theory, Algorithms, and Applications">
+  <meta property="og:image" content="./img/aaai2027/montreal.jpg">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230b1424'/%3E%3Cpolyline points='5,21 10,15 14,18 19,9 23,15 27,12' fill='none' stroke='%235eead4' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --ink: #111827;
+      --ink-soft: #4b5563;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --paper: #f5f6f8;
+      --surface: #ffffff;
+      --dark: #0b1424;
+      --accent: #1d4ed8;
+      --accent-dark: #1e3a8a;
+      --kicker: #b4441f;
+      --teal: #0f766e;
+      --radius: 6px;
+      --content: 1180px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: clip; }
+    body {
+      margin: 0; color: var(--ink); background: var(--surface);
+      font: 16px/1.65 Inter, ui-sans-serif, -apple-system, "Segoe UI", sans-serif;
+      overflow-x: clip;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: var(--accent); text-decoration-color: rgba(29,78,216,.3); text-underline-offset: .2em; }
+    a:hover { color: var(--accent-dark); text-decoration-color: currentColor; }
+    h1, h2, h3 { margin: 0; line-height: 1.15; font-weight: 700; }
+    p { margin: 0 0 1rem; }
+    section { scroll-margin-top: 4.5rem; }
+    .wrap { width: calc(100% - 3rem); max-width: var(--content); margin-inline: auto; }
 
+    /* Navigation */
+    .site-nav { position: sticky; top: 0; z-index: 100; background: var(--surface); border-bottom: 1px solid var(--line); }
+    .nav-inner { min-height: 4.25rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; position: relative; }
+    .brand { display: inline-flex; align-items: center; gap: .7rem; color: var(--ink); text-decoration: none; }
+    .brand:hover { color: var(--ink); }
+    .brand svg { width: 2rem; height: 2rem; flex: none; }
+    .brand-copy { display: flex; flex-direction: column; line-height: 1.15; }
+    .brand-name { font-weight: 800; font-size: .98rem; }
+    .brand-venue { color: var(--muted); font-size: .72rem; font-weight: 600; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0; }
+    .nav-links a {
+      display: inline-block; padding: 1.35rem 0 1.2rem; color: var(--ink-soft); text-decoration: none;
+      font-size: .88rem; font-weight: 600; border-bottom: 3px solid transparent;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--ink); border-bottom-color: var(--accent); }
+    .nav-links .nav-cfp { color: var(--kicker); }
+    .nav-toggle {
+      display: none; width: 2.6rem; height: 2.6rem; align-items: center; justify-content: center;
+      background: transparent; border: 1px solid var(--line); border-radius: var(--radius); cursor: pointer; font-size: 1.3rem; color: var(--ink);
+    }
+    @media (max-width: 960px) {
+      .nav-toggle { display: inline-flex; }
+      .nav-links {
+        position: absolute; top: 100%; left: -1.5rem; right: -1.5rem; flex-direction: column; gap: 0;
+        background: var(--surface); border-bottom: 1px solid var(--line); padding: .5rem 1.5rem 1rem; display: none;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: .6rem 0; border-bottom: 0; }
+    }
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="AAAI'27 Workshop-AI4TS: Artificial Intelligence for Time Series Analysis: Theory,
-    Algorithms, and Applications">
-    <meta property="og:image" content="./img/aaai2027/montreal.jpg">
-    <meta property="og:type" content="website">
+    /* Hero */
+    .hero { color: #f3f4f6; background: var(--dark) url("./img/aaai2027/hero-series.svg") right center / cover no-repeat; }
+    @media (max-width: 700px) { .hero { background-image: linear-gradient(rgba(11,20,36,.72), rgba(11,20,36,.72)), url("./img/aaai2027/hero-series.svg"); } }
+    .hero-inner { min-height: clamp(28rem, 60vh, 36rem); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding-block: 4rem; }
+    .kicker { margin: 0 0 .75rem; color: var(--kicker); font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+    .hero .kicker { color: #5eead4; }
+    .hero h1 { max-width: 18ch; font-size: clamp(2.4rem, 5.4vw, 3.85rem); color: #fff; }
+    .hero-sub { margin: 1rem 0 0; font-size: clamp(1.15rem, 2vw, 1.5rem); font-weight: 600; color: #e5e7eb; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: .5rem 1.6rem; margin: 1.6rem 0 2rem; padding: 0; list-style: none; font-weight: 600; font-size: .95rem; }
+    .hero-meta li::before { content: "\25CF"; color: #f2c14e; margin-right: .5rem; font-size: .7em; vertical-align: .15em; }
+    .hero-meta a { color: inherit; }
+    .btns { display: flex; flex-wrap: wrap; gap: .75rem; }
+    .btn { display: inline-block; padding: .7rem 1.15rem; border-radius: var(--radius); font-weight: 650; font-size: .92rem; text-decoration: none; }
+    .btn-primary { background: #e05a3a; color: #fff; }
+    .btn-primary:hover { background: #c4472a; color: #fff; }
+    .btn-outline { color: #fff; border: 1px solid rgba(255,255,255,.45); }
+    .btn-outline:hover { color: #fff; background: rgba(255,255,255,.08); }
+    .btn-dark { background: var(--ink); color: #fff; }
 
+    /* Sections */
+    .section { padding: 5rem 0; }
+    .section.alt { background: var(--paper); }
+    .section h2 { font-size: clamp(1.7rem, 3vw, 2.2rem); margin-bottom: 1.25rem; }
+    .reading { max-width: 820px; }
+    .reading p { color: var(--ink-soft); }
+    .lede { font-size: 1.35rem; line-height: 1.5; font-weight: 500; color: var(--ink); margin: 0; padding-left: 1.25rem; border-left: 3px solid var(--teal); }
+    .intro-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 3rem; align-items: start; }
+    .intro-grid p { color: var(--ink-soft); }
+    .intro-grid .lede { color: var(--ink); }
+    @media (max-width: 900px) { .intro-grid { grid-template-columns: 1fr; gap: 1.5rem; } .lede { font-size: 1.15rem; } }
+    .sub-h { font-size: 1.15rem; margin: 3.5rem 0 .75rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+    .two-col { display: grid; grid-template-columns: 1.15fr .85fr; gap: 3.5rem; align-items: start; }
+    @media (max-width: 900px) { .two-col { grid-template-columns: 1fr !important; gap: 2rem; } }
 
-    <title>
-        AAAI'27 Workshop-AI4TS: AI for Time Series Analysis: Theory,
-        Algorithms, and Applications
-    </title>
+    /* Framing figure */
+    .framing { margin: 2.5rem 0 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 1.25rem; }
+    .framing svg { display: block; width: 100%; height: auto; font-family: Inter, sans-serif; }
+    .framing .fig-narrow { display: none; max-width: 440px; margin: 0 auto; }
+    @media (max-width: 760px) { .framing .fig-wide { display: none; } .framing .fig-narrow { display: block; } .framing { padding: 0; border: 0; } }
+    .framing figcaption { margin-top: .75rem; font-size: .82rem; color: var(--muted); }
 
-    <!-- Bootstrap Core CSS -->
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    /* Topics */
+    .topic-list { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 3rem; counter-reset: t; }
+    .topic-list li { counter-increment: t; display: flex; gap: 1rem; padding: .75rem 0; border-top: 1px solid #dfe3e8; }
+    .topic-list li::before { content: counter(t, decimal-leading-zero); font-size: .78rem; font-weight: 700; color: var(--teal); flex: none; width: 1.6rem; padding-top: .15rem; font-variant-numeric: tabular-nums; }
+    .topic-list li.wide { grid-column: 1 / -1; }
+    @media (max-width: 760px) { .topic-list { grid-template-columns: 1fr; } }
 
-    <!-- Custom CSS -->
-    <link href="./css/agency.css" rel="stylesheet">
+    /* CFP */
+    .callout { border-left: 3px solid var(--kicker); padding: .25rem 0 .25rem 1.25rem; }
+    .callout h3 { font-size: 1rem; color: var(--kicker); margin-bottom: .5rem; }
+    .note { font-size: .82rem; color: var(--muted) !important; margin-top: 1.5rem; }
 
-    <!-- Custom Fonts -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="./css/style.css" rel="stylesheet">
+    /* CFP steps */
+    .steps { list-style: none; margin: 0 0 2rem; padding: 0; counter-reset: st; }
+    .steps li { counter-increment: st; position: relative; padding: 0 0 1.4rem 3.1rem; }
+    .steps li::before {
+      content: counter(st); position: absolute; left: 0; top: 0; width: 2.1rem; height: 2.1rem; border-radius: 50%;
+      display: grid; place-items: center; font-weight: 700; font-size: .9rem; color: #fff; background: var(--dark);
+    }
+    .steps li:not(:last-child)::after { content: ""; position: absolute; left: 1.03rem; top: 2.3rem; bottom: .2rem; width: 2px; background: var(--line); }
+    .steps li:last-child { padding-bottom: 0; }
+    .steps li:last-child::before { background: var(--kicker); }
+    .steps b { display: block; font-size: 1rem; padding-top: .15rem; }
+    .steps span { display: block; font-size: .88rem; color: var(--muted); line-height: 1.5; }
 
-    <style>
-        header_1 {
-          display: block;
-        }
-        h3 {
-          margin-top: 0;
-        }
-    </style>
+    /* Day at a glance */
+    .day { margin: 0 0 2rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem 1.25rem 1rem; }
+    .day-title { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin-bottom: .75rem; }
+    .day-bar { display: flex; height: 46px; border-radius: 4px; overflow: hidden; gap: 2px; }
+    .day-bar > div { display: grid; place-items: center; font-size: .72rem; font-weight: 650; color: #fff; white-space: nowrap; overflow: hidden; min-width: 0; }
+    .day-bar .k { background: #1d4ed8; } .day-bar .o { background: #0f766e; } .day-bar .p { background: #b4441f; }
+    .day-bar .s { background: #7c3aed; } .day-bar .b { background: #e5e7eb; color: #6b7280; } .day-bar .m { background: #9ca3af; }
+    .day-ticks { position: relative; height: 1.3rem; margin-top: .35rem; font-size: .72rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .day-ticks span { position: absolute; transform: translateX(-50%); }
+    .day-ticks span:first-child { transform: none; } .day-ticks span:last-child { transform: translateX(-100%); }
+    .day-legend { display: flex; flex-wrap: wrap; gap: .3rem 1.1rem; font-size: .8rem; color: var(--ink-soft); margin-top: .4rem; }
+    .day-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: .4rem; vertical-align: -1px; }
+    @media (max-width: 700px) { .day-bar > div { font-size: 0; } .day-ticks span:nth-child(even) { display: none; } }
 
+    /* Dates */
+    .dates { width: 100%; border-collapse: collapse; }
+    .dates td { padding: 1rem 0; border-top: 1px solid var(--line); vertical-align: top; }
+    .dates tr:last-child td { border-bottom: 1px solid var(--line); }
+    .dates td:first-child { font-weight: 600; padding-right: 1rem; }
+    .dates td:last-child { text-align: right; font-weight: 700; white-space: nowrap; }
+    .dates small { display: block; font-weight: 400; color: var(--muted); font-size: .8rem; }
+
+    /* Schedule */
+    .sched { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); font-size: .95rem; }
+    .sched th { text-align: left; font-size: .72rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); padding: .75rem 1rem; border-bottom: 1px solid var(--line); background: var(--paper); }
+    .sched td { padding: .7rem 1rem; border-top: 1px solid var(--line); vertical-align: top; }
+    .sched td:first-child { white-space: nowrap; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+    .sched td:last-child { font-weight: 600; }
+    .sched tr.brk td { background: var(--paper); color: var(--muted); font-weight: 500; }
+    .venue-photo { margin: 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+    .venue-photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+    .venue-photo figcaption { padding: .75rem 1rem; font-size: .9rem; }
+    .venue-photo figcaption b { display: block; }
+    @media (max-width: 560px) { .sched td:first-child { white-space: normal; } .sched th:nth-child(2), .sched td:nth-child(2) { display: none; } }
+
+    /* People */
+    .people { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.25rem; }
+    @media (max-width: 1000px) { .people { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 600px) { .people { grid-template-columns: repeat(2, 1fr); gap: 1rem; } }
+    .person { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+    .person .photo { aspect-ratio: 1 / 1; background: var(--paper); }
+    .person .photo img { width: 100%; height: 100%; object-fit: cover; }
+    .person .photo.initials { display: grid; place-items: center; font-size: 2.6rem; font-weight: 700; color: #94a3b8; background: linear-gradient(135deg, #eef2f7, #e2e8f0); }
+    .person .info { padding: .8rem .9rem 1rem; }
+    .person h3 { font-size: .98rem; margin-bottom: .25rem; }
+    .person h3 a { color: var(--ink); text-decoration: none; }
+    .person h3 a:hover { color: var(--accent); text-decoration: underline; }
+    .person .aff { font-size: .82rem; color: var(--muted); line-height: 1.45; }
+    .person .talk { margin-top: .5rem; padding-top: .5rem; border-top: 1px solid var(--line); font-size: .82rem; color: var(--ink-soft); }
+
+    /* PC */
+    .pc { list-style: none; margin: 0; padding: 0; columns: 3 260px; column-gap: 3rem; }
+    .pc li { break-inside: avoid; padding: .55rem 0; border-top: 1px solid var(--line); font-size: .95rem; }
+    .pc span { color: var(--muted); }
+
+    footer { background: var(--dark); color: #cbd5e1; padding: 2.5rem 0; font-size: .9rem; }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; }
+    .past { width: 100%; padding-bottom: 1.5rem; margin-bottom: .5rem; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .past-title { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: #94a3b8; margin-bottom: .6rem; }
+    .past-links { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .past-links a { color: #e2e8f0; text-decoration: none; font-size: .82rem; font-weight: 600; padding: .3rem .7rem; border: 1px solid rgba(255,255,255,.18); border-radius: 999px; }
+    .past-links a:hover { border-color: #5eead4; color: #5eead4; }
+    footer a { color: #5eead4; }
+
+    @media (max-width: 600px) { .wrap { width: calc(100% - 2rem); } .section { padding: 3.5rem 0; } .nav-links { left: -1rem; right: -1rem; } }
+  </style>
 </head>
+<body>
 
-<body id="page-top" class="index">
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden active">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li class="">
-                        <a class="page-scroll" href="#introduction">Intro</a>
-                    </li>
-
-                    <li>
-                        <a class="page-scroll" href="#call">CFP</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#dates">Key Dates</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#program">Schedule</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#Speakers">Speakers</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#organization">Organizers</a>
-                    </li>
-                    <!--li>
-                        <a class="page-scroll" href="#program_committee">Program Committee</a>
-                    </li-->
-
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
-
-    <!-- Header -->
-    <header_1 style="background-image: url(./img/aaai2027/montreal.jpg); background-size: cover; background-position: center 60%; height:600px;">
-
-        <div class="container">
-            <div class="intro-text" style="color:Yellow;">
-
-
-                <br>
-
-                <div class="intro-heading">AAAI'27 Workshop</div>
-                <br><br>
-                <br><br>
-                <div class="intro-heading-large">AI4TS: AI for  Time Series </div>
-                <br><br>
-                <div class="intro-heading-large">Analysis: </div>
-                <br><br>
-                <br><br>
-                <div class="intro-heading"> Theory, Algorithms, and Applications  </div>
-                <br><br>
-            </div>
-        </div>
-    </header_1>
-
-    <!-- Introduction Section -->
-    <section id="introduction" style="padding-top: 30px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                </div>
-            </div>
-            <div class="row text-justify">
-                <div class="col-md-12" >
-
-                    <p class="large text-muted ">
-                        Time series data are becoming ubiquitous across numerous real-world applications, including IoT devices, healthcare, wearable devices, smart vehicles, financial markets, biological sciences, and environmental sciences. The availability of massive amounts of data, their complex underlying structures and distributions, and advances in high-performance computing have created a growing demand for new theories and algorithms to address fundamental challenges in time series analysis, including representation, classification, prediction, causal analysis, and multimodal learning across diverse applications.
-
-                        <br><br>The goal of this workshop is to provide a platform for researchers and AI practitioners from academia and industry to discuss emerging research directions, key technical challenges, and solutions for addressing these challenges in practical applications. The workshop will focus on both the theoretical and practical aspects of time series data analysis and aims to inspire innovations in theories, algorithms, and applications, especially in emerging domains such as multimodal learning and agentic AI. We will invite researchers, AI practitioners, and policymakers from related fields, including machine learning, data science, statistics, econometrics, and other disciplines, to contribute to the workshop.
-
-                        <br><br>This workshop welcomes submissions presenting innovative solutions to a broad range of time series analysis problems. Topics of interest include, but are not limited to:
-                    </p>
-
-                    <ul class="large text-muted">
-                        <li>Time series forecasting and prediction</li>
-                        <li>Spatio-temporal forecasting and prediction</li>
-                        <li>Time series anomaly detection and diagnosis</li>
-                        <li>Time series change point detection</li>
-                        <li>Time series classification and clustering</li>
-                        <li>Time series similarity search</li>
-                        <li>Time series indexing</li>
-                        <li>Time series compression</li>
-                        <li>Time series pattern discovery</li>
-                        <li>Time series domain adaptation and generalization</li>
-                        <li>Time series source-free domain adaptation</li>
-                        <li>Federated learning for time series</li>
-                        <li>Interpretation and explanation in time series</li>
-                        <li>Causal discovery and inference in time series</li>
-                        <li>Bias and fairness in time series</li>
-                        <li>Benchmarks, experimental evaluation, and comparison for time series analysis tasks</li>
-                        <li>Foundation models and LLMs for time series analysis</li>
-                        <li>Multimodal time series analysis</li>
-                        <li>Agentic AI for time series analysis</li>
-                        <li>Time series applications in various areas: E-commerce, Cloud computing, Transportation, Fintech, Healthcare,
-                        Internet of things, Wireless networks, Predictive maintenance, Education, Energy, Climate, etc.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-<!-- Call for Papers Section -->
-<section id="call" class="bg-mid-gray">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Call for Papers</h2>
-                <h3 class="section-subheading text-muted" style="font-size:large">Contact with us: <a href="mailto:ai4ts.ijcai@gmail.com">ai4ts.ijcai@gmail.com</a></h3>
-            </div>
-        </div>
-        <div class="row text-justify">
-            <div class="col-md-12">
-                <p class = "large text-muted">
-                    Submissions should be 4-7 pages long, excluding references, and follow the AAAI2027 template. Submissions are double-blind and author identity should not be revealed to the reviewers. An optional appendix of arbitrary length is allowed and should be put at the end of the paper (after references).
-                </p>
-                <p class="large text-muted">
-                    Accepted papers will be presented as posters during the workshop and listed on the website (non-archival/without proceedings). A small number of accepted papers will be selected to be presented as contributed talks (10-minute oral presentations). We also welcome submissions of unpublished papers, including those submitted/accepted to other venues if that other venue allows.
-                </p>
-                <p class="large text-muted">
-                    <b> Submission link: TBD </b>
-                </p>
-                <p class="large text-muted">
-                    Note: Microsoft CMT service was used for managing the peer-reviewing process for this conference. This service was provided for free by Microsoft and they bore all expenses, including costs for Azure cloud services as well as for software development and support.
-                </p>
-            </div>
-        </div>
+  <nav class="site-nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#0b1424"/><polyline points="5,21 10,15 14,18 19,9 23,15 27,12" fill="none" stroke="#5eead4" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="brand-copy"><span class="brand-name">AI4TS</span><span class="brand-venue">AAAI'27 Workshop · Montreal</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#intro">Intro</a></li>
+        <li><a href="#cfp" class="nav-cfp">CFP</a></li>
+        <li><a href="#dates">Key Dates</a></li>
+        <li><a href="#schedule">Schedule</a></li>
+        <li><a href="#organizers">Organizers</a></li>
+        <li><a href="#pc">Program Committee</a></li>
+      </ul>
     </div>
-</section>
+  </nav>
 
-<section id="dates" class="bg-mid-gray">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Key Dates</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 text-left">
-                &nbsp;
-            </div>
-            <div class="text-left" style="text-align: center;">
-                <div class="col-md-12">
-                    <p class="large text-muted">
-                        <b>Workshop Paper Submission Due Date: </b> <span>TBD (23:59pm AoE)</span>
-                    </p>
-                    <p class="large text-muted">
-                        <b>Notification of Paper Acceptance: </b> <span>TBD (23:59pm AoE)</span>
-                    </p>
-                    <p class="large text-muted">
-                        <b>AAAI AI4TS Workshop Date: </b><span> TBD</span>
-                    </p>
-                    <p class="large text-muted">
-                        <b>Location: </b><span> Montreal, Canada, Room: TBD</span>
-                    </p>
-                </div>
-            </div>
-        </div>
+  <header class="hero" id="top">
+    <div class="wrap hero-inner">
+      <p class="kicker">AAAI'27 Workshop</p>
+      <h1>AI4TS: AI for Time Series Analysis</h1>
+      <p class="hero-sub">Theory, Algorithms, and Applications</p>
+      <ul class="hero-meta">
+        <li>Montreal, Canada</li>
+        <li>Workshop date: TBD</li>
+        <li><a href="mailto:ai4ts.ijcai@gmail.com">ai4ts.ijcai@gmail.com</a></li>
+      </ul>
+      <div class="btns">
+        <a class="btn btn-primary" href="#cfp">Call for Papers &rarr;</a>
+        <a class="btn btn-outline" href="#schedule">Schedule</a>
+      </div>
     </div>
-</section>
+  </header>
 
-    <section id="program" class="bg-mid-gray">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Detailed Workshop Schedule:</h2>
-                    <h3 class="section-subheading text-muted">
-                    <p> * Each oral presentation consists of 8 minutes presentation and 2 minutes Q&A.</p>
-                    <p>Location: Montreal, Canada,  Room: TBD </p>
-                    </h3>
-                </div>
-            </div>
-
-            <style type="text/css">
-                table.tableizer-table {
-                    font-size: 15px;
-                    border: 1px solid #CCC;
-                    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
-                }
-                .tableizer-table td {
-                    padding: 10px;
-                    margin: 4px;
-                    border: 1px solid #CCC;
-                    text-align:left
-                }
-                .tableizer-table th {
-                    background-color: #4682B4;
-                    color: #FFF;
-                    font-weight: normal;
-                    text-align:center
-                }
-            </style>
-            <table class="tableizer-table">
-                <thead><tr class="tableizer-firstrow"><th style="width:15%">Time (EST)</th><th>Speaker</th><th>Title</th></tr></thead><tbody>
-                    <tr><td>9:00 am - 9:05 am</td><td>&nbsp;</td><td>Opening Remarks</td></tr>
-                    <tr><td>9:05 am - 9:45 am</td><td><strong>TBD</strong></td><td>Keynote Talk 1</td></tr>
-                    <tr><td>9:45 am - 10:35 am</td><td><strong>Oral Paper Presentations</strong></td><td>Oral Papers 1-5</td></tr>
-                    <tr><td>10:35 am - 10:50 am</td><td>&nbsp;</td><td>Coffee Break</td></tr>
-                    <tr><td>10:50 am - 11:30 am</td><td><strong>TBD</strong></td><td>Keynote Talk 2</td></tr>
-                    <tr><td>11:30 am - 12:10 pm</td><td><strong>TBD</strong></td><td>Keynote Talk 3</td></tr>
-                    <tr><td>12:10 pm - 2:00 pm</td><td>&nbsp;</td><td>Lunch Break</td></tr>
-                    <tr><td>2:00 pm - 2:40 pm</td><td><strong>TBD</strong></td><td>Keynote Talk 4</td></tr>
-                    <tr><td>2:40 pm - 3:20 pm</td><td><strong>TBD</strong></td><td>Keynote Talk 5</td></tr>
-                    <tr><td>3:20 pm - 3:30 pm</td><td>&nbsp;</td><td>Award Ceremony</td></tr>
-                    <tr><td>3:30 pm - 3:50 pm</td><td>&nbsp;</td><td>Coffee Break</td></tr>
-                    <tr><td>3:50 pm - 4:30 pm</td><td><strong>Moderator: Dongjin Song</strong></td><td>Panel Discussion</td></tr>
-                    <tr><td>4:30 pm - 6:00 pm</td><td>&nbsp;</td><td>Poster Session</td></tr>
-                </tbody>
-            </table>
-            <div class="col-lg-1 text-left">
-                &nbsp;
-            </div>
+  <main>
+    <!-- ===== Intro ===== -->
+    <section class="section" id="intro">
+      <div class="wrap">
+        <p class="kicker">Intro</p>
+        <h2>AI for Time Series Analysis</h2>
+        <div class="intro-grid">
+          <p class="lede">Time series data are becoming ubiquitous across numerous real-world applications, including IoT devices, healthcare, wearable devices, smart vehicles, financial markets, biological sciences, and environmental sciences.</p>
+          <div>
+          <p>The availability of massive amounts of data, their complex underlying structures and distributions, and advances in high-performance computing have created a growing demand for new theories and algorithms to address fundamental challenges in time series analysis, including representation, classification, prediction, causal analysis, and multimodal learning across diverse applications.</p>
+          <p>The goal of this workshop is to provide a platform for researchers and AI practitioners from academia and industry to discuss emerging research directions, key technical challenges, and solutions for addressing these challenges in practical applications. The workshop will focus on both the theoretical and practical aspects of time series data analysis and aims to inspire innovations in theories, algorithms, and applications, especially in emerging domains such as multimodal learning and agentic AI. We will invite researchers, AI practitioners, and policymakers from related fields, including machine learning, data science, statistics, econometrics, and other disciplines, to contribute to the workshop.</p>
+          </div>
         </div>
+
+        <figure class="framing">
+          <svg class="fig-wide" viewBox="0 0 1100 520" role="img" aria-label="AI4TS workshop overview">
+<defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#9ca3af"/></marker></defs>
+<rect x="14" y="12" width="22" height="3" fill="#1d4ed8"/>
+<text x="44" y="18" font-size="11" font-weight="700" fill="#1d4ed8" text-anchor="start" letter-spacing=".5">01 · MOTIVATION</text>
+<text x="44" y="34" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >why time series, why now</text>
+<rect x="382" y="12" width="22" height="3" fill="#0f766e"/>
+<text x="412" y="18" font-size="11" font-weight="700" fill="#0f766e" text-anchor="start" letter-spacing=".5">02 · RESEARCH FOCUS</text>
+<text x="412" y="34" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >theory, algorithms, and applications</text>
+<rect x="774" y="12" width="22" height="3" fill="#b4441f"/>
+<text x="804" y="18" font-size="11" font-weight="700" fill="#b4441f" text-anchor="start" letter-spacing=".5">03 · WORKSHOP FORMAT</text>
+<text x="804" y="34" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >a full-day program at AAAI'27</text>
+<rect x="8" y="46" width="320" height="332" rx="8" fill="#eff4ff" stroke="#c7d6fb"/>
+<text x="24" y="72" font-size="13.5" font-weight="700" fill="#111827" text-anchor="start" >Time series data are ubiquitous</text>
+<text x="24" y="90" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >massive data · complex structures · HPC advances</text>
+<polyline points="24,112.0 38,123.6 52,116.8 66,119.2 80,108.7 94,97.8 108,109.0 122,110.3 136,117.8 150,126.5 164,111.9 178,108.3 192,105.3 206,99.4 220,115.9 234,120.3 248,117.7 262,120.9 276,104.6 290,100.8 304,109.0" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-linejoin="round"/>
+<rect x="24" y="134" width="93" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
+<text x="70" y="150" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >IoT devices</text>
+<rect x="123" y="134" width="86" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
+<text x="166" y="150" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >Healthcare</text>
+<rect x="24" y="164" width="126" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
+<text x="87" y="180" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >Wearable devices</text>
+<rect x="156" y="164" width="112" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
+<text x="212" y="180" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >Smart vehicles</text>
+<rect x="24" y="194" width="132" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
+<text x="90" y="210" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >Financial markets</text>
+<rect x="162" y="194" width="145" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
+<text x="235" y="210" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >Biological sciences</text>
+<rect x="24" y="224" width="165" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
+<text x="107" y="240" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >Environmental sciences</text>
+<text x="24" y="270" font-size="11" font-weight="700" fill="#1d4ed8" text-anchor="start" >Fundamental challenges</text>
+<rect x="24" y="278" width="112" height="24" rx="12.0" fill="#1d4ed8" stroke="#1d4ed8"/>
+<text x="80" y="294" font-size="11" font-weight="600" fill="#fff" text-anchor="middle" >Representation</text>
+<rect x="142" y="278" width="112" height="24" rx="12.0" fill="#1d4ed8" stroke="#1d4ed8"/>
+<text x="199" y="294" font-size="11" font-weight="600" fill="#fff" text-anchor="middle" >Classification</text>
+<rect x="24" y="308" width="86" height="24" rx="12.0" fill="#1d4ed8" stroke="#1d4ed8"/>
+<text x="67" y="324" font-size="11" font-weight="600" fill="#fff" text-anchor="middle" >Prediction</text>
+<rect x="116" y="308" width="119" height="24" rx="12.0" fill="#1d4ed8" stroke="#1d4ed8"/>
+<text x="176" y="324" font-size="11" font-weight="600" fill="#fff" text-anchor="middle" >Causal analysis</text>
+<rect x="24" y="338" width="145" height="24" rx="12.0" fill="#1d4ed8" stroke="#1d4ed8"/>
+<text x="97" y="354" font-size="11" font-weight="600" fill="#fff" text-anchor="middle" >Multimodal learning</text>
+<rect x="376" y="46" width="348" height="332" rx="8" fill="#0b1424"/>
+<text x="550" y="74" font-size="15" font-weight="700" fill="#fff" text-anchor="middle" >AI4TS @ AAAI'27</text>
+<text x="550" y="92" font-size="10.5" font-weight="400" fill="#94a3b8" text-anchor="middle" >new theories and algorithms for time series analysis</text>
+<rect x="392" y="106" width="100" height="62" rx="6" fill="#13213a" stroke="#5eead4" stroke-opacity=".6"/>
+<rect x="392" y="106" width="100" height="3" fill="#5eead4"/>
+<text x="442" y="148" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle" >Theory</text>
+<text x="442" y="130" font-size="15" font-weight="700" fill="#5eead4" text-anchor="middle" >∑</text>
+<rect x="500" y="106" width="100" height="62" rx="6" fill="#13213a" stroke="#7aa2f7" stroke-opacity=".6"/>
+<rect x="500" y="106" width="100" height="3" fill="#7aa2f7"/>
+<text x="550" y="148" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle" >Algorithms</text>
+<g fill="none" stroke="#7aa2f7" stroke-width="1.8"><rect x="538" y="121" width="8" height="8"/><rect x="554" y="121" width="8" height="8"/><path d="M546 125h8"/></g>
+<rect x="608" y="106" width="100" height="62" rx="6" fill="#13213a" stroke="#f2c14e" stroke-opacity=".6"/>
+<rect x="608" y="106" width="100" height="3" fill="#f2c14e"/>
+<text x="658" y="148" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle" >Applications</text>
+<g fill="none" stroke="#f2c14e" stroke-width="1.6"><circle cx="658" cy="125" r="7"/><path d="M651 125h14M658 118c3 4 3 10 0 14M658 118c-3 4-3 10 0 14"/></g>
+<text x="392" y="192" font-size="10" font-weight="700" fill="#5eead4" text-anchor="start" letter-spacing=".5">EMERGING DIRECTIONS</text>
+<rect x="392" y="200" width="178" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
+<text x="481" y="216" font-size="11" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Foundation models &amp; LLMs</text>
+<rect x="392" y="230" width="145" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
+<text x="465" y="246" font-size="11" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Multimodal learning</text>
+<rect x="543" y="230" width="86" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
+<text x="586" y="246" font-size="11" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Agentic AI</text>
+<text x="392" y="278" font-size="10" font-weight="700" fill="#5eead4" text-anchor="start" letter-spacing=".5">BRINGING TOGETHER</text>
+<rect x="392" y="286" width="70" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
+<text x="427" y="302" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Academia</text>
+<rect x="468" y="286" width="70" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
+<text x="504" y="302" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Industry</text>
+<rect x="545" y="286" width="96" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
+<text x="593" y="302" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Policymakers</text>
+<rect x="392" y="316" width="121" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
+<text x="452" y="332" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Machine learning</text>
+<rect x="519" y="316" width="96" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
+<text x="567" y="332" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Data science</text>
+<rect x="620" y="316" width="83" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
+<text x="662" y="332" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Statistics</text>
+<rect x="392" y="346" width="96" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
+<text x="440" y="362" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Econometrics</text>
+<rect x="772" y="46" width="320" height="332" rx="8" fill="#fdf3ee" stroke="#f3cdbd"/>
+<rect x="786" y="60" width="292" height="64" rx="6" fill="#fff" stroke="#f1dcd2"/>
+<rect x="798" y="74" width="44" height="36" rx="6" fill="#b4441f"/>
+<text x="820" y="97" font-size="14" font-weight="800" fill="#fff" text-anchor="middle" >5</text>
+<text x="856" y="84" font-size="13" font-weight="700" fill="#111827" text-anchor="start" >Keynote talks</text>
+<text x="856" y="101" font-size="10.5" font-weight="400" fill="#4b5563" text-anchor="start" >invited speakers from</text>
+<text x="856" y="115" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >academia and industry</text>
+<rect x="786" y="135" width="292" height="64" rx="6" fill="#fff" stroke="#f1dcd2"/>
+<rect x="798" y="149" width="44" height="36" rx="6" fill="#b4441f"/>
+<text x="820" y="172" font-size="14" font-weight="800" fill="#fff" text-anchor="middle" >◆</text>
+<text x="856" y="159" font-size="13" font-weight="700" fill="#111827" text-anchor="start" >Oral &amp; poster papers</text>
+<text x="856" y="176" font-size="10.5" font-weight="400" fill="#4b5563" text-anchor="start" >8-min talk + 2-min Q&amp;A</text>
+<text x="856" y="190" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >poster session for accepted papers</text>
+<rect x="786" y="210" width="292" height="64" rx="6" fill="#fff" stroke="#f1dcd2"/>
+<rect x="798" y="224" width="44" height="36" rx="6" fill="#b4441f"/>
+<text x="820" y="247" font-size="14" font-weight="800" fill="#fff" text-anchor="middle" >★</text>
+<text x="856" y="234" font-size="13" font-weight="700" fill="#111827" text-anchor="start" >Award Ceremony</text>
+<text x="856" y="251" font-size="10.5" font-weight="400" fill="#4b5563" text-anchor="start" >3:20 pm - 3:30 pm</text>
+<rect x="786" y="285" width="292" height="64" rx="6" fill="#fff" stroke="#f1dcd2"/>
+<rect x="798" y="299" width="44" height="36" rx="6" fill="#b4441f"/>
+<text x="820" y="322" font-size="14" font-weight="800" fill="#fff" text-anchor="middle" >☰</text>
+<text x="856" y="309" font-size="13" font-weight="700" fill="#111827" text-anchor="start" >Panel discussion</text>
+<text x="856" y="326" font-size="10.5" font-weight="400" fill="#4b5563" text-anchor="start" >Moderator: Dongjin Song</text>
+<text x="856" y="340" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >3:50 pm - 4:30 pm</text>
+<line x1="332" y1="212" x2="368" y2="212" stroke="#9ca3af" stroke-width="2" marker-end="url(#arr)"/>
+<line x1="728" y1="212" x2="764" y2="212" stroke="#9ca3af" stroke-width="2" marker-end="url(#arr)"/>
+<rect x="8" y="396" width="1084" height="116" rx="8" fill="#f9fafb" stroke="#e5e7eb"/>
+<text x="28" y="420" font-size="11" font-weight="700" fill="#374151" text-anchor="start" letter-spacing=".5">THE AI4TS WORKSHOP SERIES</text>
+<line x1="70" y1="474" x2="1030" y2="474" stroke="#d1d5db" stroke-width="2"/>
+<circle cx="70" cy="474" r="6" fill="#fff" stroke="#64748b" stroke-width="2.5"/>
+<text x="70" y="456" font-size="11.5" font-weight="700" fill="#64748b" text-anchor="middle" >IJCAI'22</text>
+<circle cx="190" cy="474" r="6" fill="#fff" stroke="#64748b" stroke-width="2.5"/>
+<text x="190" y="456" font-size="11.5" font-weight="700" fill="#64748b" text-anchor="middle" >IJCAI'23</text>
+<circle cx="310" cy="474" r="6" fill="#fff" stroke="#64748b" stroke-width="2.5"/>
+<text x="310" y="456" font-size="11.5" font-weight="700" fill="#64748b" text-anchor="middle" >ICDM'23</text>
+<circle cx="430" cy="474" r="6" fill="#fff" stroke="#1d4ed8" stroke-width="2.5"/>
+<text x="430" y="456" font-size="11.5" font-weight="700" fill="#1d4ed8" text-anchor="middle" >AAAI'24</text>
+<circle cx="550" cy="474" r="6" fill="#fff" stroke="#64748b" stroke-width="2.5"/>
+<text x="550" y="456" font-size="11.5" font-weight="700" fill="#64748b" text-anchor="middle" >IJCAI'24</text>
+<circle cx="670" cy="474" r="6" fill="#fff" stroke="#1d4ed8" stroke-width="2.5"/>
+<text x="670" y="456" font-size="11.5" font-weight="700" fill="#1d4ed8" text-anchor="middle" >AAAI'25</text>
+<circle cx="790" cy="474" r="6" fill="#fff" stroke="#64748b" stroke-width="2.5"/>
+<text x="790" y="456" font-size="11.5" font-weight="700" fill="#64748b" text-anchor="middle" >WebConf'25</text>
+<circle cx="910" cy="474" r="6" fill="#fff" stroke="#1d4ed8" stroke-width="2.5"/>
+<text x="910" y="456" font-size="11.5" font-weight="700" fill="#1d4ed8" text-anchor="middle" >AAAI'26</text>
+<circle cx="1030" cy="474" r="13" fill="#b4441f" fill-opacity=".15"/><circle cx="1030" cy="474" r="7" fill="#b4441f"/>
+<text x="1030" y="452" font-size="13" font-weight="800" fill="#b4441f" text-anchor="middle" >AAAI'27</text>
+<text x="1030" y="502" font-size="10.5" font-weight="600" fill="#b4441f" text-anchor="middle" >Montreal, Canada</text>
+</svg>
+          <svg class="fig-narrow" viewBox="0 0 400 1456" role="img" aria-label="AI4TS workshop overview"><defs><marker id="arrm" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#9ca3af"/></marker></defs>
+<rect x="10" y="12" width="22" height="3" fill="#1d4ed8"/>
+<text x="40" y="18" font-size="11" font-weight="700" fill="#1d4ed8" text-anchor="start" letter-spacing=".5">01 · MOTIVATION</text>
+<text x="40" y="34" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >why time series, why now</text>
+<rect x="8" y="44" width="384" height="272" rx="8" fill="#eff4ff" stroke="#c7d6fb"/>
+<text x="24" y="70" font-size="13.5" font-weight="700" fill="#111827" text-anchor="start" >Time series data are ubiquitous</text>
+<text x="24" y="88" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >massive data · complex structures · HPC advances</text>
+<polyline points="24,110.0 38,121.6 52,114.8 66,117.2 80,106.7 94,95.8 108,107.0 122,108.3 136,115.8 150,124.5 164,109.9 178,106.3 192,103.3 206,97.4 220,113.9 234,118.3 248,115.7 262,118.9 276,102.6 290,98.8 304,107.0 318,105.9 332,119.8 346,122.0 360,108.9 374,109.2" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-linejoin="round"/>
+<rect x="24" y="132" width="93" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
+<text x="70" y="148" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >IoT devices</text>
+<rect x="123" y="132" width="86" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
+<text x="166" y="148" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >Healthcare</text>
+<rect x="215" y="132" width="126" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
+<text x="277" y="148" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >Wearable devices</text>
+<rect x="24" y="162" width="112" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
+<text x="80" y="178" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >Smart vehicles</text>
+<rect x="142" y="162" width="132" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
+<text x="208" y="178" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >Financial markets</text>
+<rect x="24" y="192" width="145" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
+<text x="97" y="208" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >Biological sciences</text>
+<rect x="175" y="192" width="165" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
+<text x="258" y="208" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >Environmental sciences</text>
+<text x="24" y="238" font-size="11" font-weight="700" fill="#1d4ed8" text-anchor="start" >Fundamental challenges</text>
+<rect x="24" y="246" width="112" height="24" rx="12.0" fill="#1d4ed8" stroke="#1d4ed8"/>
+<text x="80" y="262" font-size="11" font-weight="600" fill="#fff" text-anchor="middle" >Representation</text>
+<rect x="142" y="246" width="112" height="24" rx="12.0" fill="#1d4ed8" stroke="#1d4ed8"/>
+<text x="199" y="262" font-size="11" font-weight="600" fill="#fff" text-anchor="middle" >Classification</text>
+<rect x="261" y="246" width="86" height="24" rx="12.0" fill="#1d4ed8" stroke="#1d4ed8"/>
+<text x="304" y="262" font-size="11" font-weight="600" fill="#fff" text-anchor="middle" >Prediction</text>
+<rect x="24" y="276" width="119" height="24" rx="12.0" fill="#1d4ed8" stroke="#1d4ed8"/>
+<text x="84" y="292" font-size="11" font-weight="600" fill="#fff" text-anchor="middle" >Causal analysis</text>
+<rect x="149" y="276" width="145" height="24" rx="12.0" fill="#1d4ed8" stroke="#1d4ed8"/>
+<text x="222" y="292" font-size="11" font-weight="600" fill="#fff" text-anchor="middle" >Multimodal learning</text>
+<line x1="200.0" y1="324" x2="200.0" y2="344" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrm)"/>
+<rect x="10" y="356" width="22" height="3" fill="#0f766e"/>
+<text x="40" y="362" font-size="11" font-weight="700" fill="#0f766e" text-anchor="start" letter-spacing=".5">02 · RESEARCH FOCUS</text>
+<text x="40" y="378" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >theory, algorithms, and applications</text>
+<rect x="8" y="388" width="384" height="340" rx="8" fill="#0b1424"/>
+<text x="200" y="416" font-size="15" font-weight="700" fill="#fff" text-anchor="middle" >AI4TS @ AAAI'27</text>
+<text x="200" y="434" font-size="10.5" font-weight="400" fill="#94a3b8" text-anchor="middle" >new theories and algorithms for time series analysis</text>
+<rect x="24" y="448" width="112" height="62" rx="6" fill="#13213a" stroke="#5eead4" stroke-opacity=".6"/>
+<rect x="24" y="448" width="112" height="3" fill="#5eead4"/>
+<text x="80" y="490" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle" >Theory</text>
+<text x="80" y="472" font-size="15" font-weight="700" fill="#5eead4" text-anchor="middle" >∑</text>
+<rect x="144" y="448" width="112" height="62" rx="6" fill="#13213a" stroke="#7aa2f7" stroke-opacity=".6"/>
+<rect x="144" y="448" width="112" height="3" fill="#7aa2f7"/>
+<text x="200" y="490" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle" >Algorithms</text>
+<g fill="none" stroke="#7aa2f7" stroke-width="1.8"><rect x="188" y="463" width="8" height="8"/><rect x="204" y="463" width="8" height="8"/><path d="M196 467h8"/></g>
+<rect x="264" y="448" width="112" height="62" rx="6" fill="#13213a" stroke="#f2c14e" stroke-opacity=".6"/>
+<rect x="264" y="448" width="112" height="3" fill="#f2c14e"/>
+<text x="320" y="490" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle" >Applications</text>
+<g fill="none" stroke="#f2c14e" stroke-width="1.6"><circle cx="320" cy="467" r="7"/><path d="M313 467h14M320 460c3 4 3 10 0 14M320 460c-3 4-3 10 0 14"/></g>
+<text x="24" y="534" font-size="10" font-weight="700" fill="#5eead4" text-anchor="start" letter-spacing=".5">EMERGING DIRECTIONS</text>
+<rect x="24" y="542" width="178" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
+<text x="113" y="558" font-size="11" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Foundation models &amp; LLMs</text>
+<rect x="208" y="542" width="145" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
+<text x="281" y="558" font-size="11" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Multimodal learning</text>
+<rect x="24" y="572" width="86" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
+<text x="67" y="588" font-size="11" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Agentic AI</text>
+<text x="24" y="620" font-size="10" font-weight="700" fill="#5eead4" text-anchor="start" letter-spacing=".5">BRINGING TOGETHER</text>
+<rect x="24" y="628" width="70" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
+<text x="59" y="644" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Academia</text>
+<rect x="100" y="628" width="70" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
+<text x="136" y="644" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Industry</text>
+<rect x="177" y="628" width="96" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
+<text x="225" y="644" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Policymakers</text>
+<rect x="24" y="658" width="121" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
+<text x="84" y="674" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Machine learning</text>
+<rect x="151" y="658" width="96" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
+<text x="199" y="674" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Data science</text>
+<rect x="252" y="658" width="83" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
+<text x="294" y="674" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Statistics</text>
+<rect x="24" y="688" width="96" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
+<text x="72" y="704" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Econometrics</text>
+<line x1="200.0" y1="736" x2="200.0" y2="756" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrm)"/>
+<rect x="10" y="768" width="22" height="3" fill="#b4441f"/>
+<text x="40" y="774" font-size="11" font-weight="700" fill="#b4441f" text-anchor="start" letter-spacing=".5">03 · WORKSHOP FORMAT</text>
+<text x="40" y="790" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >a full-day program at AAAI'27</text>
+<rect x="8" y="800" width="384" height="314" rx="8" fill="#fdf3ee" stroke="#f3cdbd"/>
+<rect x="22" y="814" width="356" height="64" rx="6" fill="#fff" stroke="#f1dcd2"/>
+<rect x="34" y="828" width="44" height="36" rx="6" fill="#b4441f"/>
+<text x="56" y="851" font-size="14" font-weight="800" fill="#fff" text-anchor="middle" >5</text>
+<text x="92" y="838" font-size="13" font-weight="700" fill="#111827" text-anchor="start" >Keynote talks</text>
+<text x="92" y="855" font-size="10.5" font-weight="400" fill="#4b5563" text-anchor="start" >invited speakers from</text>
+<text x="92" y="869" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >academia and industry</text>
+<rect x="22" y="889" width="356" height="64" rx="6" fill="#fff" stroke="#f1dcd2"/>
+<rect x="34" y="903" width="44" height="36" rx="6" fill="#b4441f"/>
+<text x="56" y="926" font-size="14" font-weight="800" fill="#fff" text-anchor="middle" >◆</text>
+<text x="92" y="913" font-size="13" font-weight="700" fill="#111827" text-anchor="start" >Oral &amp; poster papers</text>
+<text x="92" y="930" font-size="10.5" font-weight="400" fill="#4b5563" text-anchor="start" >8-min talk + 2-min Q&amp;A</text>
+<text x="92" y="944" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >poster session for accepted papers</text>
+<rect x="22" y="964" width="356" height="64" rx="6" fill="#fff" stroke="#f1dcd2"/>
+<rect x="34" y="978" width="44" height="36" rx="6" fill="#b4441f"/>
+<text x="56" y="1001" font-size="14" font-weight="800" fill="#fff" text-anchor="middle" >★</text>
+<text x="92" y="988" font-size="13" font-weight="700" fill="#111827" text-anchor="start" >Award Ceremony</text>
+<text x="92" y="1005" font-size="10.5" font-weight="400" fill="#4b5563" text-anchor="start" >3:20 pm - 3:30 pm</text>
+<rect x="22" y="1039" width="356" height="64" rx="6" fill="#fff" stroke="#f1dcd2"/>
+<rect x="34" y="1053" width="44" height="36" rx="6" fill="#b4441f"/>
+<text x="56" y="1076" font-size="14" font-weight="800" fill="#fff" text-anchor="middle" >☰</text>
+<text x="92" y="1063" font-size="13" font-weight="700" fill="#111827" text-anchor="start" >Panel discussion</text>
+<text x="92" y="1080" font-size="10.5" font-weight="400" fill="#4b5563" text-anchor="start" >Moderator: Dongjin Song</text>
+<text x="92" y="1094" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >3:50 pm - 4:30 pm</text>
+<rect x="8" y="1134" width="384" height="314" rx="8" fill="#f9fafb" stroke="#e5e7eb"/>
+<text x="24" y="1158" font-size="11" font-weight="700" fill="#374151" text-anchor="start" letter-spacing=".5">THE AI4TS WORKSHOP SERIES</text>
+<line x1="40" y1="1184" x2="40" y2="1424" stroke="#d1d5db" stroke-width="2"/>
+<circle cx="40" cy="1184" r="5.5" fill="#fff" stroke="#64748b" stroke-width="2.5"/>
+<text x="62" y="1188" font-size="12" font-weight="700" fill="#64748b" text-anchor="start" >IJCAI'22</text>
+<circle cx="40" cy="1214" r="5.5" fill="#fff" stroke="#64748b" stroke-width="2.5"/>
+<text x="62" y="1218" font-size="12" font-weight="700" fill="#64748b" text-anchor="start" >IJCAI'23</text>
+<circle cx="40" cy="1244" r="5.5" fill="#fff" stroke="#64748b" stroke-width="2.5"/>
+<text x="62" y="1248" font-size="12" font-weight="700" fill="#64748b" text-anchor="start" >ICDM'23</text>
+<circle cx="40" cy="1274" r="5.5" fill="#fff" stroke="#1d4ed8" stroke-width="2.5"/>
+<text x="62" y="1278" font-size="12" font-weight="700" fill="#1d4ed8" text-anchor="start" >AAAI'24</text>
+<circle cx="40" cy="1304" r="5.5" fill="#fff" stroke="#64748b" stroke-width="2.5"/>
+<text x="62" y="1308" font-size="12" font-weight="700" fill="#64748b" text-anchor="start" >IJCAI'24</text>
+<circle cx="40" cy="1334" r="5.5" fill="#fff" stroke="#1d4ed8" stroke-width="2.5"/>
+<text x="62" y="1338" font-size="12" font-weight="700" fill="#1d4ed8" text-anchor="start" >AAAI'25</text>
+<circle cx="40" cy="1364" r="5.5" fill="#fff" stroke="#64748b" stroke-width="2.5"/>
+<text x="62" y="1368" font-size="12" font-weight="700" fill="#64748b" text-anchor="start" >WebConf'25</text>
+<circle cx="40" cy="1394" r="5.5" fill="#fff" stroke="#1d4ed8" stroke-width="2.5"/>
+<text x="62" y="1398" font-size="12" font-weight="700" fill="#1d4ed8" text-anchor="start" >AAAI'26</text>
+<circle cx="40" cy="1424" r="12" fill="#b4441f" fill-opacity=".15"/><circle cx="40" cy="1424" r="6.5" fill="#b4441f"/>
+<text x="62" y="1429" font-size="13" font-weight="800" fill="#b4441f" text-anchor="start" >AAAI'27 · Montreal, Canada</text>
+</svg>
+          <figcaption>Workshop overview: motivation, research focus, the full-day program, and the AI4TS workshop series.</figcaption>
+        </figure>
+
+      </div>
     </section>
 
-    <!--section id="Speakers" >
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Speakers</h2>
-                </div>
-            </div>
-
-            <div class="row speakers">
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <a href="https://www.sercanarik.com/" target="_blank">
-                            <img src="./img/aaai2027/Sercan_Arik.png" style="height: 200px; width:200px;" class="img-responsive img-circle">
-                        </a>
-                        <h4><a href="https://www.sercanarik.com/" target="_blank">Dr. Sercan Arik</a></h4>
-                        <p class="text-muted">Staff Research Scientist<br> Google Cloud AI Research </p>
-                    </div>
-                </div>
-                <div class="col-sm-8 text-justify ">
-                    <h3>Title: TBD
-                    </h3>
-                    <p class="text-muted" style="font-size: 16px;">
-                        TBD
-                    </p>
-                </div>
-            </div>
-
-            <div class="row speakers">
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <a href="https://elynncc.github.io/" target="_blank">
-                            <img src="./img/aaai2027/Elynn_Chen.jpg" style="height: 200px; width:200px;" class="img-responsive img-circle">
-                        </a>
-                        <h4><a href="https://elynncc.github.io/" target="_blank">Prof. Elynn Chen</a></h4>
-                        <p class="text-muted">Assistant Professor<br> New York University </p>
-                    </div>
-                </div>
-                <div class="col-sm-8 text-justify ">
-                    <h3>Title: TBD
-                    </h3>
-                    <p class="text-muted" style="font-size: 16px;">
-                        TBD
-                    </p>
-                </div>
-            </div>
-
-            <div class="row speakers">
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <a href="https://viterbi.usc.edu/directory/faculty/Liu/Yan" target="_blank">
-                            <img src="./img/aaai2027/Yan_Liu.jpg" style="height: 200px; width:200px;" class="img-responsive img-circle">
-                        </a>
-                        <h4><a href="https://viterbi.usc.edu/directory/faculty/Liu/Yan" target="_blank">Prof. Yan Liu</a></h4>
-                        <p class="text-muted">Professor<br> University of Southern California </p>
-                    </div>
-                </div>
-                <div class="col-sm-8 text-justify ">
-                    <h3>Title: TBD
-                    </h3>
-                    <p class="text-muted" style="font-size: 16px;">
-                        TBD
-                    </p>
-                </div>
-            </div>
-
-            <div class="row speakers">
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <a href="https://www.paparrizos.org/" target="_blank">
-                            <img src="./img/aaai2027/John_Paparrizos.jpg" style="height: 200px; width:200px;" class="img-responsive img-circle">
-                        </a>
-                        <h4><a href="https://www.paparrizos.org/" target="_blank">Prof. John Paparrizos</a></h4>
-                        <p class="text-muted">Assistant Professor<br> The Ohio State University </p>
-                    </div>
-                </div>
-                <div class="col-sm-8 text-justify ">
-                    <h3>Title: TBD
-                    </h3>
-                    <p class="text-muted" style="font-size: 16px;">
-                        TBD
-                    </p>
-                </div>
-            </div>
-
-            <div class="row speakers">
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <a href="https://web.mit.edu/~ywang02/www/" target="_blank">
-                            <img src="./img/aaai2027/Bernie_Wang.jpg" style="height: 200px; width:200px;" class="img-responsive img-circle">
-                        </a>
-                        <h4><a href="https://web.mit.edu/~ywang02/www/" target="_blank">Dr. Yuyang (Bernie) Wang</a></h4>
-                        <p class="text-muted">Principal Scientist<br> Amazon </p>
-                    </div>
-                </div>
-                <div class="col-sm-8 text-justify ">
-                    <h3>Title: TBD
-                    </h3>
-                    <p class="text-muted" style="font-size: 16px;">
-                        TBD
-                    </p>
-                </div>
-            </div>
-        </div>
-</section-->
-
-    <section id="organization"  class="bg-mid-gray">
-        <div class="row">
-            <div class="col-lg-12 text-center" style="padding-bottom: 20px;">
-                <h2 class="section-heading">Organizers</h2>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-1">
-                    &nbsp;
-                </div>
-                <div class="col-sm-2">
-                    <div class="team-member">
-                        <img src="./img/aaai2027/Dongjin_Song.png" class="img-responsive img-circle" alt="" width="200" height="300">
-                        <h4><a href="https://songdj.github.io/">Dongjin Song</a></h4>
-                        <p class="text-muted">Associate Professor, University of Connecticut</p>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    &nbsp;
-                </div>
-                <div class="col-sm-2">
-                    <div class="team-member">
-                        <img src="./img/aaai2027/Jingchao_Ni.jpg" class="img-responsive img-circle" alt="" width="200" height="300">
-                        <h4><a href="https://nijingchao.github.io/">Jingchao Ni</a></h4>
-                        <p class="text-muted">Assistant Professor</br>University of Houston</p>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    &nbsp;
-                </div>
-                <div class="col-sm-2">
-                    <div class="team-member">
-                        <img src="./img/aaai2027/dongshengluo.jpeg" class="img-responsive img-circle" alt="" width="200" height="300">
-                        <h4><a href="https://dluoedu.github.io/">Dongsheng Luo</a></h4>
-                        <p class="text-muted">Presidential Assistant Professor</br>Singapore Management University</p>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    &nbsp;
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-1">
-                    &nbsp;
-                </div>
-                <div class="col-sm-2">
-                    <div class="team-member">
-                        <img src="./img/aaai2027/Qingsong_Wen.jpg" class="img-responsive img-circle" alt="" width="200" height="300">
-                        <h4><a href="https://sites.google.com/site/qingsongwen8/">Qingsong Wen</a></h4>
-                        <p class="text-muted"> Head of AI Research & Chief Scientist <br> Squirrel AI Learning</p>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    &nbsp;
-                </div>
-                <div class="col-sm-2">
-                    <div class="team-member">
-                        <img src="./img/aaai2027/Yao_Xie.jpg" class="img-responsive img-circle" alt="" width="200" height="300">
-                        <h4><a href="https://www2.isye.gatech.edu/~yxie77/">Yao Xie</a></h4>
-                        <p class="text-muted">Coca-Cola Foundation Chair and Professor</br>Georgia Institute of Technology</p>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    &nbsp;
-                </div>
-                <div class="col-sm-2">
-                    <div class="team-member">
-                        <img src="./img/aaai2027/Wu-Min.jpg" class="img-responsive img-circle" alt="" width="200" height="300">
-                        <h4><a href="https://sites.google.com/site/wumincf/">Min Wu</a></h4>
-                        <p class="text-muted">Principal Scientist II</br>Institute for Infocomm Research (I<sup>2</sup>R), A*STAR</p>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    &nbsp;
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-1">
-                    &nbsp;
-                </div>
-                <div class="col-sm-2">
-                    <div class="team-member">
-                        <img src="./img/aaai2027/SP.jpg" class="img-responsive img-circle" alt="" width="200" height="300">
-                        <h4><a href="https://sanjayp.is.umbc.edu/">Sanjay Purushotham</a></h4>
-                        <p class="text-muted">Associate Professor</br>University of Maryland Baltimore County</p>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    &nbsp;
-                </div>
-                <div class="col-sm-2">
-                    <div class="team-member">
-                        <img src="./img/aaai2027/Hanghang_Tong.png" class="img-responsive img-circle" alt="" width="200" height="300">
-                        <h4><a href="http://tonghanghang.org/">Hanghang Tong</a></h4>
-                        <p class="text-muted">Professor</br>University of Illinois Urbana-Champaign</p>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    &nbsp;
-                </div>
-                <div class="col-sm-2">
-                    <div class="team-member">
-                        <img src="./img/aaai2027/Haifeng_chen.png" class="img-responsive img-circle" alt="" width="200" height="300">
-                        <h4><a href="https://haifengchen.gitlab.io/intro/">Haifeng Chen</a></h4>
-                        <p class="text-muted">Head</br> Data Science and System
-                            Security Department at NEC Laboratories America</p>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    &nbsp;
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-5">
-                    &nbsp;
-                </div>
-                <div class="col-sm-2">
-                    <div class="team-member">
-                        <img src="./img/aaai2027/Yuriy.jpg" class="img-responsive img-circle" alt="" width="200" height="300">
-                        <h4><a href="https://www.linkedin.com/in/yuriynevmyvaka/">Yuriy Nevmyvaka</a></h4>
-                        <p class="text-muted">Managing Director</br> Machine Learning Research at Morgan Stanley
-                        </p>
-                    </div>
-                </div>
-                <div class="col-sm-5">
-                    &nbsp;
-                </div>
-            </div>
-        </div>
+    <section class="section alt" id="topics">
+      <div class="wrap">
+        <p class="kicker">Topics</p>
+        <h2>Topics of Interest</h2>
+        <p class="reading" style="color:var(--ink-soft)">This workshop welcomes submissions presenting innovative solutions to a broad range of time series analysis problems. Topics of interest include, but are not limited to:</p>
+        <ul class="topic-list">
+          <li>Time series forecasting and prediction</li>
+          <li>Spatio-temporal forecasting and prediction</li>
+          <li>Time series anomaly detection and diagnosis</li>
+          <li>Time series change point detection</li>
+          <li>Time series classification and clustering</li>
+          <li>Time series similarity search</li>
+          <li>Time series indexing</li>
+          <li>Time series compression</li>
+          <li>Time series pattern discovery</li>
+          <li>Time series domain adaptation and generalization</li>
+          <li>Time series source-free domain adaptation</li>
+          <li>Federated learning for time series</li>
+          <li>Interpretation and explanation in time series</li>
+          <li>Causal discovery and inference in time series</li>
+          <li>Bias and fairness in time series</li>
+          <li>Benchmarks, experimental evaluation, and comparison for time series analysis tasks</li>
+          <li>Foundation models and LLMs for time series analysis</li>
+          <li>Multimodal time series analysis</li>
+          <li>Agentic AI for time series analysis</li>
+          <li class="wide">Time series applications in various areas: E-commerce, Cloud computing, Transportation, Fintech, Healthcare, Internet of things, Wireless networks, Predictive maintenance, Education, Energy, Climate, etc.</li>
+        </ul>
+      </div>
     </section>
 
-    <!--section id="program_committee">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Program Committee</h2>
-                </div>
+    <!-- ===== CFP ===== -->
+    <section class="section" id="cfp">
+      <div class="wrap">
+        <p class="kicker">CFP</p>
+        <h2>Call for Papers</h2>
+        <div class="two-col">
+          <div class="reading">
+            <p>Submissions should be 4-7 pages long, excluding references, and follow the AAAI2027 template. Submissions are double-blind and author identity should not be revealed to the reviewers. An optional appendix of arbitrary length is allowed and should be put at the end of the paper (after references).</p>
+            <p>Accepted papers will be presented as posters during the workshop and listed on the website (non-archival/without proceedings). A small number of accepted papers will be selected to be presented as contributed talks (10-minute oral presentations). We also welcome submissions of unpublished papers, including those submitted/accepted to other venues if that other venue allows.</p>
+            <div class="btns" style="margin-top:1.5rem"><span class="btn btn-dark">Submission link: TBD</span></div>
+            <p class="note">Note: Microsoft CMT service was used for managing the peer-reviewing process for this conference. This service was provided for free by Microsoft and they bore all expenses, including costs for Azure cloud services as well as for software development and support.</p>
+          </div>
+          <div>
+            <ol class="steps" aria-label="Submission process">
+              <li><b>Prepare</b><span>4-7 pages excluding references, AAAI2027 template; optional appendix after references</span></li>
+              <li><b>Submit</b><span>Submission link: TBD</span></li>
+              <li><b>Double-blind review</b><span>Author identity should not be revealed to the reviewers</span></li>
+              <li><b>Present at AI4TS</b><span>Posters for all accepted papers; selected papers as 10-minute contributed talks; listed on the website (non-archival)</span></li>
+            </ol>
+            <div class="callout">
+            <h3>Contact with us</h3>
+            <p><a href="mailto:ai4ts.ijcai@gmail.com">ai4ts.ijcai@gmail.com</a></p>
             </div>
-            <div class="row">
-                <div class="col-lg-2"></div>
-                <div class="col-lg-8">
-                    <ul class="large" style="margin-left:100px;">
-                        <li> Dr. Wei Cheng, NEC Labs America</li>
-                        <li> Dr. Derek Aguiar, University of Connecticut</li>
-                        <li> Dr. Suining He, University of Connecticut</li>
-                        <li> Dr. Yaguang Li, Google Brain</li>
-                        <li> Dr. Zhengping Che, Midea</li>
-                        <li> Dr. Sungyong Seo, Google Cloud AI</li>
-                        <li> Dr. Chen Luo, Amazon Search</li>
-                        <li> Dr. Abhishek Mukherji, Accenture Inc.</li>
-                        <li> Dr. Xingjian Shi, HKUST</li>
-                        <li> Dr. Jiayu Zhou, Michigan State University</li>
-                        <li> Dr. Jilin Hu, Aalborg University</li>
-                        <li> Dr. Fernando Gama, Morgan Stanley</li>
-                        <li> Dr. Kashif Rasul, Morgan Stanley</li>
-                        <li> Dr. Xiang Li, Massachusetts General Hospital</li>
-                        <li> Dr. Kai Yang, Tongji University</li>
-                        <li> Dr. Yaxuan Kong, University of Oxford</li>
-                        <li> Dr. Wei Zhu, Amazon</li>
-                        <li> Dr. Yue Zhao, University of Southern California</li>
-                        <li> Dr. Yuxuan Liang, Hong Kong University of Science and Technology</li>
-                        <li> Dr. An Wang, Case Western Reserve University</li>
-                        <li> Dr. Emmett Tomai, UT Rio Grande Valley</li>
-                    </ul>
-                </div>
-                <div class="col"></div>
-            </div>
+          </div>
         </div>
-        <div class="col-lg-12 text-center" style="padding-bottom: 20px;">
-            <h3 class="section-subheading text-muted">Contact with us: <a href="mailto:ai4ts.ijcai@gmail.com">ai4ts.ijcai@gmail.com</a></h3>
+      </div>
+    </section>
+
+    <!-- ===== Key Dates ===== -->
+    <section class="section alt" id="dates">
+      <div class="wrap two-col" style="grid-template-columns: .8fr 1.2fr">
+        <div>
+          <p class="kicker">Timeline</p>
+          <h2>Key Dates</h2>
         </div>
-    </section-->
+        <table class="dates">
+          <tr><td>Workshop Paper Submission Due Date</td><td>TBD<small>23:59pm AoE</small></td></tr>
+          <tr><td>Notification of Paper Acceptance</td><td>TBD<small>23:59pm AoE</small></td></tr>
+          <tr><td>AAAI AI4TS Workshop Date</td><td>TBD</td></tr>
+          <tr><td>Location</td><td>Montreal, Canada<small>Room: TBD</small></td></tr>
+        </table>
+      </div>
+    </section>
 
-    <!-- jQuery -->
-    <script src="./js/jquery.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="./js/bootstrap.min.js"></script>
-    <!-- Plugin JavaScript -->
-    <script src="./js/jquery.easing.min.js"></script>
-    <script src="./js/classie.js"></script>
-    <script src="./js/cbpAnimatedHeader.js"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="./js/agency.js"></script>
+    <!-- ===== Schedule ===== -->
+    <section class="section" id="schedule">
+      <div class="wrap">
+        <p class="kicker">Schedule</p>
+        <h2>Detailed Workshop Schedule</h2>
+        <p style="color:var(--ink-soft)">* Each oral presentation consists of 8 minutes presentation and 2 minutes Q&amp;A.</p>
+        <div class="day" style="margin-top:1.5rem" aria-hidden="true">
+          <div class="day-title">The day at a glance · Time (EST)</div>
+          <div class="day-bar"><div class="m" style="flex:5" title="Opening Remarks"></div><div class="k" style="flex:40" title="Keynote Talk 1">Keynote 1</div><div class="o" style="flex:50" title="Oral Paper Presentations">Oral 1-5</div><div class="b" style="flex:15" title="Coffee Break"></div><div class="k" style="flex:40" title="Keynote Talk 2">Keynote 2</div><div class="k" style="flex:40" title="Keynote Talk 3">Keynote 3</div><div class="b" style="flex:110" title="Lunch Break">Lunch</div><div class="k" style="flex:40" title="Keynote Talk 4">Keynote 4</div><div class="k" style="flex:40" title="Keynote Talk 5">Keynote 5</div><div class="m" style="flex:10" title="Award Ceremony"></div><div class="b" style="flex:20" title="Coffee Break"></div><div class="p" style="flex:40" title="Panel Discussion">Panel</div><div class="s" style="flex:90" title="Poster Session">Posters</div></div>
+          <div class="day-ticks"><span style="left:0.000%">9:00</span><span style="left:11.111%">10:00</span><span style="left:22.222%">11:00</span><span style="left:33.333%">12:00</span><span style="left:44.444%">1:00</span><span style="left:55.556%">2:00</span><span style="left:66.667%">3:00</span><span style="left:77.778%">4:00</span><span style="left:88.889%">5:00</span><span style="left:100.000%">6:00</span></div>
+          <div class="day-legend"><span><i style="background:#1d4ed8"></i>Keynote Talks</span><span><i style="background:#0f766e"></i>Oral Paper Presentations</span><span><i style="background:#b4441f"></i>Panel Discussion</span><span><i style="background:#7c3aed"></i>Poster Session</span><span><i style="background:#9ca3af"></i>Opening / Award Ceremony</span><span><i style="background:#e5e7eb"></i>Breaks</span></div>
+        </div>
+        <div class="two-col" style="grid-template-columns: 1.6fr .7fr">
+          <table class="sched">
+            <thead><tr><th>Time (EST)</th><th>Speaker</th><th>Title</th></tr></thead>
+            <tbody>
+              <tr><td>9:00 am - 9:05 am</td><td></td><td>Opening Remarks</td></tr>
+              <tr><td>9:05 am - 9:45 am</td><td>TBD</td><td>Keynote Talk 1</td></tr>
+              <tr><td>9:45 am - 10:35 am</td><td>Oral Paper Presentations</td><td>Oral Papers 1-5</td></tr>
+              <tr class="brk"><td>10:35 am - 10:50 am</td><td></td><td>Coffee Break</td></tr>
+              <tr><td>10:50 am - 11:30 am</td><td>TBD</td><td>Keynote Talk 2</td></tr>
+              <tr><td>11:30 am - 12:10 pm</td><td>TBD</td><td>Keynote Talk 3</td></tr>
+              <tr class="brk"><td>12:10 pm - 2:00 pm</td><td></td><td>Lunch Break</td></tr>
+              <tr><td>2:00 pm - 2:40 pm</td><td>TBD</td><td>Keynote Talk 4</td></tr>
+              <tr><td>2:40 pm - 3:20 pm</td><td>TBD</td><td>Keynote Talk 5</td></tr>
+              <tr><td>3:20 pm - 3:30 pm</td><td></td><td>Award Ceremony</td></tr>
+              <tr class="brk"><td>3:30 pm - 3:50 pm</td><td></td><td>Coffee Break</td></tr>
+              <tr><td>3:50 pm - 4:30 pm</td><td>Moderator: Dongjin Song</td><td>Panel Discussion</td></tr>
+              <tr><td>4:30 pm - 6:00 pm</td><td></td><td>Poster Session</td></tr>
+            </tbody>
+          </table>
+          <figure class="venue-photo">
+            <img src="./img/aaai2027/montreal.jpg" alt="Montreal skyline" loading="lazy">
+            <figcaption><b>Location: Montreal, Canada</b>Room: TBD</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
 
+    <!-- ===== Speakers (hidden until speakers are announced; matches commit 8013bc6) =====
+    <section class="section alt" id="speakers">
+      <div class="wrap">
+        <p class="kicker">Keynotes</p>
+        <h2>Speakers</h2>
+        <div class="people">
+          <article class="person"><div class="photo"><img src="./img/aaai2027/Sercan_Arik.png" alt="Sercan Arik" loading="lazy"></div>
+            <div class="info"><h3><a href="https://www.sercanarik.com/" target="_blank" rel="noopener">Dr. Sercan Arik</a></h3><div class="aff">Staff Research Scientist<br>Google Cloud AI Research</div><div class="talk">Title: TBD</div></div></article>
+          <article class="person"><div class="photo"><img src="./img/aaai2027/Elynn_Chen.jpg" alt="Elynn Chen" loading="lazy"></div>
+            <div class="info"><h3><a href="https://elynncc.github.io/" target="_blank" rel="noopener">Prof. Elynn Chen</a></h3><div class="aff">Assistant Professor<br>New York University</div><div class="talk">Title: TBD</div></div></article>
+          <article class="person"><div class="photo"><img src="./img/aaai2027/Yan_Liu.jpg" alt="Yan Liu" loading="lazy"></div>
+            <div class="info"><h3><a href="https://viterbi.usc.edu/directory/faculty/Liu/Yan" target="_blank" rel="noopener">Prof. Yan Liu</a></h3><div class="aff">Professor<br>University of Southern California</div><div class="talk">Title: TBD</div></div></article>
+          <article class="person"><div class="photo"><img src="./img/aaai2027/John_Paparrizos.jpg" alt="John Paparrizos" loading="lazy"></div>
+            <div class="info"><h3><a href="https://www.paparrizos.org/" target="_blank" rel="noopener">Prof. John Paparrizos</a></h3><div class="aff">Assistant Professor<br>The Ohio State University</div><div class="talk">Title: TBD</div></div></article>
+          <article class="person"><div class="photo"><img src="./img/aaai2027/Bernie_Wang.jpg" alt="Yuyang (Bernie) Wang" loading="lazy"></div>
+            <div class="info"><h3><a href="https://web.mit.edu/~ywang02/www/" target="_blank" rel="noopener">Dr. Yuyang (Bernie) Wang</a></h3><div class="aff">Principal Scientist<br>Amazon</div><div class="talk">Title: TBD</div></div></article>
+        </div>
+      </div>
+    </section>
 
-</body></html>
+    ===== end Speakers -->
+
+    <!-- ===== Organizers ===== -->
+    <section class="section alt" id="organizers">
+      <div class="wrap">
+        <p class="kicker">Organizing Committee</p>
+        <h2>Organizers</h2>
+        <div class="people">
+          <article class="person"><div class="photo"><img src="./img/aaai2027/Dongjin_Song.jpg" alt="Dongjin Song" loading="lazy"></div>
+            <div class="info"><h3><a href="https://songdj.github.io/" target="_blank" rel="noopener">Dongjin Song</a></h3><div class="aff">Associate Professor, University of Connecticut</div></div></article>
+          <article class="person"><div class="photo"><img src="./img/aaai2027/Jingchao_Ni.jpg" alt="Jingchao Ni" loading="lazy"></div>
+            <div class="info"><h3><a href="https://nijingchao.github.io/" target="_blank" rel="noopener">Jingchao Ni</a></h3><div class="aff">Assistant Professor<br>University of Houston</div></div></article>
+          <article class="person"><div class="photo"><img src="./img/aaai2027/dongshengluo.jpeg" alt="Dongsheng Luo" loading="lazy"></div>
+            <div class="info"><h3><a href="https://dluoedu.github.io/" target="_blank" rel="noopener">Dongsheng Luo</a></h3><div class="aff">Presidential Assistant Professor<br>Singapore Management University</div></div></article>
+          <article class="person"><div class="photo"><img src="./img/aaai2027/Qingsong_Wen.jpg" alt="Qingsong Wen" loading="lazy"></div>
+            <div class="info"><h3><a href="https://sites.google.com/site/qingsongwen8/" target="_blank" rel="noopener">Qingsong Wen</a></h3><div class="aff">Head of AI Research &amp; Chief Scientist<br>Squirrel AI Learning</div></div></article>
+          <article class="person"><div class="photo"><img src="./img/aaai2027/Yao_Xie.jpg" alt="Yao Xie" loading="lazy"></div>
+            <div class="info"><h3><a href="https://www2.isye.gatech.edu/~yxie77/" target="_blank" rel="noopener">Yao Xie</a></h3><div class="aff">Coca-Cola Foundation Chair and Professor<br>Georgia Institute of Technology</div></div></article>
+          <article class="person"><div class="photo"><img src="./img/aaai2027/Wu-Min.jpg" alt="Min Wu" loading="lazy"></div>
+            <div class="info"><h3><a href="https://sites.google.com/site/wumincf/" target="_blank" rel="noopener">Min Wu</a></h3><div class="aff">Principal Scientist II<br>Institute for Infocomm Research (I2R), A*STAR</div></div></article>
+          <article class="person"><div class="photo"><img src="./img/aaai2027/SP.jpg" alt="Sanjay Purushotham" loading="lazy"></div>
+            <div class="info"><h3><a href="https://sanjayp.is.umbc.edu/" target="_blank" rel="noopener">Sanjay Purushotham</a></h3><div class="aff">Associate Professor<br>University of Maryland Baltimore County</div></div></article>
+          <article class="person"><div class="photo"><img src="./img/aaai2027/Hanghang_Tong.png" alt="Hanghang Tong" loading="lazy"></div>
+            <div class="info"><h3><a href="http://tonghanghang.org/" target="_blank" rel="noopener">Hanghang Tong</a></h3><div class="aff">Professor<br>University of Illinois Urbana-Champaign</div></div></article>
+          <article class="person"><div class="photo"><img src="./img/aaai2027/Haifeng_chen.png" alt="Haifeng Chen" loading="lazy"></div>
+            <div class="info"><h3><a href="https://haifengchen.gitlab.io/intro/" target="_blank" rel="noopener">Haifeng Chen</a></h3><div class="aff">Head Data Science and System Security Department at NEC Laboratories America</div></div></article>
+          <article class="person"><div class="photo"><img src="./img/aaai2027/Yuriy.jpg" alt="Yuriy Nevmyvaka" loading="lazy"></div>
+            <div class="info"><h3><a href="https://www.linkedin.com/in/yuriynevmyvaka/" target="_blank" rel="noopener">Yuriy Nevmyvaka</a></h3><div class="aff">Managing Director Machine Learning Research at Morgan Stanley</div></div></article>
+        </div>
+
+        <h3 class="sub-h">Web &amp; Publicity Chairs</h3>
+        <div class="people" style="margin-top:1.25rem">
+          <article class="person"><div class="photo"><img src="./img/aaai2027/Chengao_Shen.jpg" alt="ChengAo Shen" loading="lazy"></div>
+            <div class="info"><h3><a href="https://chengaoshen.com" target="_blank" rel="noopener">ChengAo Shen</a></h3><div class="aff">Ph.D. Student<br>University of Houston</div></div></article>
+          <article class="person"><div class="photo initials" aria-hidden="true">PT</div>
+            <div class="info"><h3>Peilin Tan</h3><div class="aff">Ph.D. Student<br>University of Connecticut</div></div></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Program Committee ===== -->
+    <section class="section" id="pc">
+      <div class="wrap">
+        <p class="kicker">Reviewers</p>
+        <h2>Program Committee</h2>
+        <ul class="pc">
+          <li>Dr. Wei Cheng, <span>NEC Labs America</span></li>
+          <li>Dr. Derek Aguiar, <span>University of Connecticut</span></li>
+          <li>Dr. Suining He, <span>University of Connecticut</span></li>
+          <li>Dr. Yaguang Li, <span>Google DeepMind</span></li>
+          <li>Dr. Zhengping Che, <span>Midea</span></li>
+          <li>Dr. Sungyong Seo, <span>Google Cloud AI</span></li>
+          <li>Dr. Chen Luo, <span>Amazon Search</span></li>
+          <li>Dr. Abhishek Mukherji, <span>Accenture Inc.</span></li>
+          <li>Dr. Xingjian Shi, <span>HKUST</span></li>
+          <li>Dr. Jiayu Zhou, <span>Michigan State University</span></li>
+          <li>Dr. Jilin Hu, <span>Aalborg University</span></li>
+          <li>Dr. Fernando Gama, <span>Morgan Stanley</span></li>
+          <li>Dr. Kashif Rasul, <span>Morgan Stanley</span></li>
+          <li>Dr. Xiang Li, <span>Massachusetts General Hospital</span></li>
+          <li>Dr. Kai Yang, <span>Tongji University</span></li>
+          <li>Dr. Yaxuan Kong, <span>University of Oxford</span></li>
+          <li>Dr. Wei Zhu, <span>Amazon</span></li>
+          <li>Dr. Yue Zhao, <span>University of Southern California</span></li>
+          <li>Dr. Yuxuan Liang, <span>Hong Kong University of Science and Technology</span></li>
+          <li>Dr. An Wang, <span>Case Western Reserve University</span></li>
+          <li>Dr. Emmett Tomai, <span>UT Rio Grande Valley</span></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="past"><div class="past-title">Previous AI4TS workshops</div><div class="past-links"><a href="https://ai4ts.github.io/aaai2026.html" target="_blank" rel="noopener">AAAI'26</a><a href="https://ai4ts.github.io/www2025.html" target="_blank" rel="noopener">WebConf'25</a><a href="https://ai4ts.github.io/aaai2025.html" target="_blank" rel="noopener">AAAI'25</a><a href="https://ai4ts.github.io/ijcai2024.html" target="_blank" rel="noopener">IJCAI'24</a><a href="https://ai4ts.github.io/aaai2024.html" target="_blank" rel="noopener">AAAI'24</a><a href="https://ai4ts.github.io/icdm2023.html" target="_blank" rel="noopener">ICDM'23</a><a href="https://ai4ts.github.io/ijcai2023.html" target="_blank" rel="noopener">IJCAI'23</a><a href="https://ai4ts.github.io/index.html" target="_blank" rel="noopener">IJCAI'22</a></div></div>
+      <div><b style="color:#fff">AI4TS @ AAAI'27</b> · AI for Time Series Analysis: Theory, Algorithms, and Applications</div>
+      <div>Contact with us: <a href="mailto:ai4ts.ijcai@gmail.com">ai4ts.ijcai@gmail.com</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const links = document.getElementById('navLinks');
+    const toggle = document.getElementById('navToggle');
+    toggle.addEventListener('click', () => toggle.setAttribute('aria-expanded', links.classList.toggle('open')));
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+    // Highlight the nav item of the section in view
+    const navMap = {};
+    links.querySelectorAll('a').forEach(a => navMap[a.getAttribute('href').slice(1)] = a);
+    const observer = new IntersectionObserver(entries => entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      Object.values(navMap).forEach(a => a.classList.remove('active'));
+      if (navMap[e.target.id]) navMap[e.target.id].classList.add('active');
+      else if (e.target.id === 'topics') navMap.intro.classList.add('active');
+    }), { rootMargin: '-40% 0px -55% 0px' });
+    document.querySelectorAll('main section[id]').forEach(s => observer.observe(s));
+  </script>
+</body>
+</html>
