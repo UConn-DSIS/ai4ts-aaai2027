@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f1d3a'/%3E%3Cpolyline points='5,21 10,15 14,18 19,9 23,15 27,12' fill='none' stroke='%23c9d6f2' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230b1424'/%3E%3Cpolyline points='5,21 10,15 14,18 19,9 23,15 27,12' fill='none' stroke='%235eead4' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <style>
     :root {
       --ink: #111827;
@@ -19,15 +19,11 @@
       --line: #e5e7eb;
       --paper: #f5f6f8;
       --surface: #ffffff;
-      --dark: #0f1d3a;
-      --brand: #1e3a8a;
-      --brand-soft: #eef2fa;
-      --brand-mid: #8ea2cf;
-      --brand-light: #c9d6f2;
-      --accent: #1e3a8a;
-      --accent-dark: #142a66;
-      --kicker: var(--brand);
-      --teal: var(--brand);
+      --dark: #0b1424;
+      --accent: #1d4ed8;
+      --accent-dark: #1e3a8a;
+      --kicker: #b4441f;
+      --teal: #0f766e;
       --radius: 6px;
       --content: 1180px;
     }
@@ -39,7 +35,7 @@
       overflow-x: clip;
     }
     img { display: block; max-width: 100%; }
-    a { color: var(--accent); text-decoration-color: rgba(30,58,138,.3); text-underline-offset: .2em; }
+    a { color: var(--accent); text-decoration-color: rgba(29,78,216,.3); text-underline-offset: .2em; }
     a:hover { color: var(--accent-dark); text-decoration-color: currentColor; }
     h1, h2, h3 { margin: 0; line-height: 1.15; font-weight: 700; }
     p { margin: 0 0 1rem; }
@@ -61,6 +57,7 @@
       font-size: .88rem; font-weight: 600; border-bottom: 3px solid transparent;
     }
     .nav-links a:hover, .nav-links a.active { color: var(--ink); border-bottom-color: var(--accent); }
+    .nav-links .nav-cfp { color: var(--kicker); }
     .nav-toggle {
       display: none; width: 2.6rem; height: 2.6rem; align-items: center; justify-content: center;
       background: transparent; border: 1px solid var(--line); border-radius: var(--radius); cursor: pointer; font-size: 1.3rem; color: var(--ink);
@@ -77,19 +74,19 @@
 
     /* Hero */
     .hero { color: #f3f4f6; background: var(--dark) url("./img/aaai2027/hero-series.svg") right center / cover no-repeat; }
-    @media (max-width: 700px) { .hero { background-image: linear-gradient(rgba(15,29,58,.72), rgba(15,29,58,.72)), url("./img/aaai2027/hero-series.svg"); } }
+    @media (max-width: 700px) { .hero { background-image: linear-gradient(rgba(11,20,36,.72), rgba(11,20,36,.72)), url("./img/aaai2027/hero-series.svg"); } }
     .hero-inner { min-height: clamp(28rem, 60vh, 36rem); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding-block: 4rem; }
     .kicker { margin: 0 0 .75rem; color: var(--kicker); font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
-    .hero .kicker { color: var(--brand-light); }
+    .hero .kicker { color: #5eead4; }
     .hero h1 { max-width: 18ch; font-size: clamp(2.4rem, 5.4vw, 3.85rem); color: #fff; }
     .hero-sub { margin: 1rem 0 0; font-size: clamp(1.15rem, 2vw, 1.5rem); font-weight: 600; color: #e5e7eb; }
     .hero-meta { display: flex; flex-wrap: wrap; gap: .5rem 1.6rem; margin: 1.6rem 0 2rem; padding: 0; list-style: none; font-weight: 600; font-size: .95rem; }
-    .hero-meta li::before { content: "\25CF"; color: var(--brand-light); margin-right: .5rem; font-size: .7em; vertical-align: .15em; }
+    .hero-meta li::before { content: "\25CF"; color: #f2c14e; margin-right: .5rem; font-size: .7em; vertical-align: .15em; }
     .hero-meta a { color: inherit; }
     .btns { display: flex; flex-wrap: wrap; gap: .75rem; }
     .btn { display: inline-block; padding: .7rem 1.15rem; border-radius: var(--radius); font-weight: 650; font-size: .92rem; text-decoration: none; }
-    .btn-primary { background: #fff; color: var(--brand); }
-    .btn-primary:hover { background: var(--brand-light); color: var(--brand); }
+    .btn-primary { background: #e05a3a; color: #fff; }
+    .btn-primary:hover { background: #c4472a; color: #fff; }
     .btn-outline { color: #fff; border: 1px solid rgba(255,255,255,.45); }
     .btn-outline:hover { color: #fff; background: rgba(255,255,255,.08); }
     .btn-dark { background: var(--ink); color: #fff; }
@@ -110,15 +107,15 @@
     @media (max-width: 900px) { .two-col { grid-template-columns: 1fr !important; gap: 2rem; } }
 
     /* Framing figure */
-    .framing { margin: 3rem 0 0; padding: 2rem 0 0; border-top: 1px solid var(--line); }
+    .framing { margin: 2.5rem 0 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 1.25rem; }
     .framing svg { display: block; width: 100%; height: auto; font-family: Inter, sans-serif; }
-    .framing .fig-narrow { display: none; max-width: 420px; }
-    @media (max-width: 760px) { .framing .fig-wide { display: none; } .framing .fig-narrow { display: block; } .framing { padding-top: 1.5rem; } }
-    .framing figcaption { margin-top: 1.25rem; font-size: .82rem; color: var(--muted); }
+    .framing .fig-narrow { display: none; max-width: 440px; margin: 0 auto; }
+    @media (max-width: 760px) { .framing .fig-wide { display: none; } .framing .fig-narrow { display: block; } .framing { padding: 0; border: 0; } }
+    .framing figcaption { margin-top: .75rem; font-size: .82rem; color: var(--muted); }
 
     /* Topics */
     .topic-list { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 3rem; counter-reset: t; }
-    .topic-list li { counter-increment: t; display: flex; gap: 1rem; padding: .75rem 0; border-top: 1px solid var(--line); }
+    .topic-list li { counter-increment: t; display: flex; gap: 1rem; padding: .75rem 0; border-top: 1px solid #dfe3e8; }
     .topic-list li::before { content: counter(t, decimal-leading-zero); font-size: .78rem; font-weight: 700; color: var(--teal); flex: none; width: 1.6rem; padding-top: .15rem; font-variant-numeric: tabular-nums; }
     .topic-list li.wide { grid-column: 1 / -1; }
     @media (max-width: 760px) { .topic-list { grid-template-columns: 1fr; } }
@@ -141,21 +138,6 @@
     .steps b { display: block; font-size: 1rem; padding-top: .15rem; }
     .steps span { display: block; font-size: .88rem; color: var(--muted); line-height: 1.5; }
 
-    /* Day at a glance */
-    .day { margin: 0 0 2rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem 1.25rem 1rem; }
-    .day-title { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin-bottom: .75rem; }
-    .day-bar { display: flex; height: 46px; border-radius: 4px; overflow: hidden; gap: 2px; }
-    .day-bar > div { display: grid; place-items: center; font-size: .72rem; font-weight: 650; color: #fff; white-space: nowrap; overflow: hidden; min-width: 0; }
-    .day-bar .k { background: var(--brand); } .day-bar .o { background: #4a66b3; } .day-bar .p { background: #7f96cc; }
-    .day-bar .s { background: var(--brand-light); color: var(--brand); } .day-bar .m { background: #d9dee7; }
-    .day-bar .b { background: repeating-linear-gradient(135deg, #f1f3f6 0 6px, #e7eaef 6px 7px); color: var(--muted); }
-    .day-ticks { position: relative; height: 1.3rem; margin-top: .35rem; font-size: .72rem; color: var(--muted); font-variant-numeric: tabular-nums; }
-    .day-ticks span { position: absolute; transform: translateX(-50%); }
-    .day-ticks span:first-child { transform: none; } .day-ticks span:last-child { transform: translateX(-100%); }
-    .day-legend { display: flex; flex-wrap: wrap; gap: .3rem 1.1rem; font-size: .8rem; color: var(--ink-soft); margin-top: .4rem; }
-    .day-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: .4rem; vertical-align: -1px; }
-    @media (max-width: 700px) { .day-bar > div { font-size: 0; } .day-ticks span:nth-child(even) { display: none; } }
-
     /* Dates */
     .dates { width: 100%; border-collapse: collapse; }
     .dates td { padding: 1rem 0; border-top: 1px solid var(--line); vertical-align: top; }
@@ -171,6 +153,9 @@
     .sched td:first-child { white-space: nowrap; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
     .sched td:last-child { font-weight: 600; }
     .sched tr.brk td { background: var(--paper); color: var(--muted); font-weight: 500; }
+    .sched tbody td:first-child { box-shadow: inset 4px 0 0 var(--row, transparent); padding-left: 1.25rem; }
+    .sched tr.k { --row: #1d4ed8; } .sched tr.o { --row: #0f766e; } .sched tr.p { --row: #b4441f; }
+    .sched tr.s { --row: #7c3aed; } .sched tr.m { --row: #9ca3af; } .sched tr.brk { --row: #e5e7eb; }
     .venue-photo { margin: 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
     .venue-photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
     .venue-photo figcaption { padding: .75rem 1rem; font-size: .9rem; }
@@ -184,7 +169,7 @@
     .person { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
     .person .photo { aspect-ratio: 1 / 1; background: var(--paper); }
     .person .photo img { width: 100%; height: 100%; object-fit: cover; }
-    .person .photo.initials { display: grid; place-items: center; font-size: 2.4rem; font-weight: 600; color: var(--brand-mid); background: var(--brand-soft); }
+    .person .photo.initials { display: grid; place-items: center; font-size: 2.6rem; font-weight: 700; color: #94a3b8; background: linear-gradient(135deg, #eef2f7, #e2e8f0); }
     .person .info { padding: .8rem .9rem 1rem; }
     .person h3 { font-size: .98rem; margin-bottom: .25rem; }
     .person h3 a { color: var(--ink); text-decoration: none; }
@@ -200,11 +185,11 @@
     footer { background: var(--dark); color: #cbd5e1; padding: 2.5rem 0; font-size: .9rem; }
     footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; }
     .past { width: 100%; padding-bottom: 1.5rem; margin-bottom: .5rem; border-bottom: 1px solid rgba(255,255,255,.12); }
-    .past-title { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--brand-mid); margin-bottom: .6rem; }
-    .past-links { display: flex; flex-wrap: wrap; gap: .4rem 1.4rem; }
-    .past-links a { color: #e2e8f0; text-decoration: none; font-size: .88rem; font-weight: 500; }
-    .past-links a:hover { color: #fff; text-decoration: underline; }
-    footer a { color: var(--brand-light); }
+    .past-title { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: #94a3b8; margin-bottom: .6rem; }
+    .past-links { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .past-links a { color: #e2e8f0; text-decoration: none; font-size: .82rem; font-weight: 600; padding: .3rem .7rem; border: 1px solid rgba(255,255,255,.18); border-radius: 999px; }
+    .past-links a:hover { border-color: #5eead4; color: #5eead4; }
+    footer a { color: #5eead4; }
 
     @media (max-width: 600px) { .wrap { width: calc(100% - 2rem); } .section { padding: 3.5rem 0; } .nav-links { left: -1rem; right: -1rem; } }
   </style>
@@ -214,7 +199,7 @@
   <nav class="site-nav">
     <div class="wrap nav-inner">
       <a class="brand" href="#top">
-        <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#0f1d3a"/><polyline points="5,21 10,15 14,18 19,9 23,15 27,12" fill="none" stroke="#c9d6f2" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#0b1424"/><polyline points="5,21 10,15 14,18 19,9 23,15 27,12" fill="none" stroke="#5eead4" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span class="brand-copy"><span class="brand-name">AI4TS</span><span class="brand-venue">AAAI'27 Workshop · Montreal</span></span>
       </a>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
@@ -540,29 +525,23 @@
         <p class="kicker">Schedule</p>
         <h2>Detailed Workshop Schedule</h2>
         <p style="color:var(--ink-soft)">* Each oral presentation consists of 8 minutes presentation and 2 minutes Q&amp;A.</p>
-        <div class="day" style="margin-top:1.5rem" aria-hidden="true">
-          <div class="day-title">The day at a glance · Time (EST)</div>
-          <div class="day-bar"><div class="m" style="flex:5" title="Opening Remarks"></div><div class="k" style="flex:40" title="Keynote Talk 1">Keynote 1</div><div class="o" style="flex:50" title="Oral Paper Presentations">Oral 1-5</div><div class="b" style="flex:15" title="Coffee Break"></div><div class="k" style="flex:40" title="Keynote Talk 2">Keynote 2</div><div class="k" style="flex:40" title="Keynote Talk 3">Keynote 3</div><div class="b" style="flex:110" title="Lunch Break">Lunch</div><div class="k" style="flex:40" title="Keynote Talk 4">Keynote 4</div><div class="k" style="flex:40" title="Keynote Talk 5">Keynote 5</div><div class="m" style="flex:10" title="Award Ceremony"></div><div class="b" style="flex:20" title="Coffee Break"></div><div class="p" style="flex:40" title="Panel Discussion">Panel</div><div class="s" style="flex:90" title="Poster Session">Posters</div></div>
-          <div class="day-ticks"><span style="left:0.000%">9:00</span><span style="left:11.111%">10:00</span><span style="left:22.222%">11:00</span><span style="left:33.333%">12:00</span><span style="left:44.444%">1:00</span><span style="left:55.556%">2:00</span><span style="left:66.667%">3:00</span><span style="left:77.778%">4:00</span><span style="left:88.889%">5:00</span><span style="left:100.000%">6:00</span></div>
-          <div class="day-legend"><span><i style="background:#1e3a8a"></i>Keynote Talks</span><span><i style="background:#4a66b3"></i>Oral Paper Presentations</span><span><i style="background:#7f96cc"></i>Panel Discussion</span><span><i style="background:#c9d6f2"></i>Poster Session</span><span><i style="background:#d9dee7"></i>Opening Remarks / Award Ceremony</span><span><i style="background:#eceff3;outline:1px solid #d9dee7"></i>Breaks</span></div>
-        </div>
-        <div class="two-col" style="grid-template-columns: 1.6fr .7fr">
+        <div class="two-col" style="grid-template-columns: 1.6fr .7fr; margin-top: 1.5rem">
           <table class="sched">
             <thead><tr><th>Time (EST)</th><th>Speaker</th><th>Title</th></tr></thead>
             <tbody>
-              <tr><td>9:00 am - 9:05 am</td><td></td><td>Opening Remarks</td></tr>
-              <tr><td>9:05 am - 9:45 am</td><td>TBD</td><td>Keynote Talk 1</td></tr>
-              <tr><td>9:45 am - 10:35 am</td><td>Oral Paper Presentations</td><td>Oral Papers 1-5</td></tr>
+              <tr class="m"><td>9:00 am - 9:05 am</td><td></td><td>Opening Remarks</td></tr>
+              <tr class="k"><td>9:05 am - 9:45 am</td><td>TBD</td><td>Keynote Talk 1</td></tr>
+              <tr class="o"><td>9:45 am - 10:35 am</td><td>Oral Paper Presentations</td><td>Oral Papers 1-5</td></tr>
               <tr class="brk"><td>10:35 am - 10:50 am</td><td></td><td>Coffee Break</td></tr>
-              <tr><td>10:50 am - 11:30 am</td><td>TBD</td><td>Keynote Talk 2</td></tr>
-              <tr><td>11:30 am - 12:10 pm</td><td>TBD</td><td>Keynote Talk 3</td></tr>
+              <tr class="k"><td>10:50 am - 11:30 am</td><td>TBD</td><td>Keynote Talk 2</td></tr>
+              <tr class="k"><td>11:30 am - 12:10 pm</td><td>TBD</td><td>Keynote Talk 3</td></tr>
               <tr class="brk"><td>12:10 pm - 2:00 pm</td><td></td><td>Lunch Break</td></tr>
-              <tr><td>2:00 pm - 2:40 pm</td><td>TBD</td><td>Keynote Talk 4</td></tr>
-              <tr><td>2:40 pm - 3:20 pm</td><td>TBD</td><td>Keynote Talk 5</td></tr>
-              <tr><td>3:20 pm - 3:30 pm</td><td></td><td>Award Ceremony</td></tr>
+              <tr class="k"><td>2:00 pm - 2:40 pm</td><td>TBD</td><td>Keynote Talk 4</td></tr>
+              <tr class="k"><td>2:40 pm - 3:20 pm</td><td>TBD</td><td>Keynote Talk 5</td></tr>
+              <tr class="m"><td>3:20 pm - 3:30 pm</td><td></td><td>Award Ceremony</td></tr>
               <tr class="brk"><td>3:30 pm - 3:50 pm</td><td></td><td>Coffee Break</td></tr>
-              <tr><td>3:50 pm - 4:30 pm</td><td>Moderator: Dongjin Song</td><td>Panel Discussion</td></tr>
-              <tr><td>4:30 pm - 6:00 pm</td><td></td><td>Poster Session</td></tr>
+              <tr class="p"><td>3:50 pm - 4:30 pm</td><td>Moderator: Dongjin Song</td><td>Panel Discussion</td></tr>
+              <tr class="s"><td>4:30 pm - 6:00 pm</td><td></td><td>Poster Session</td></tr>
             </tbody>
           </table>
           <figure class="venue-photo">
