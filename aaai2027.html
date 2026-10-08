@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230b1424'/%3E%3Cpolyline points='5,21 10,15 14,18 19,9 23,15 27,12' fill='none' stroke='%235eead4' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230f1d3a'/%3E%3Cpolyline points='5,21 10,15 14,18 19,9 23,15 27,12' fill='none' stroke='%23c9d6f2' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <style>
     :root {
       --ink: #111827;
@@ -19,11 +19,15 @@
       --line: #e5e7eb;
       --paper: #f5f6f8;
       --surface: #ffffff;
-      --dark: #0b1424;
-      --accent: #1d4ed8;
-      --accent-dark: #1e3a8a;
-      --kicker: #b4441f;
-      --teal: #0f766e;
+      --dark: #0f1d3a;
+      --brand: #1e3a8a;
+      --brand-soft: #eef2fa;
+      --brand-mid: #8ea2cf;
+      --brand-light: #c9d6f2;
+      --accent: #1e3a8a;
+      --accent-dark: #142a66;
+      --kicker: var(--brand);
+      --teal: var(--brand);
       --radius: 6px;
       --content: 1180px;
     }
@@ -35,7 +39,7 @@
       overflow-x: clip;
     }
     img { display: block; max-width: 100%; }
-    a { color: var(--accent); text-decoration-color: rgba(29,78,216,.3); text-underline-offset: .2em; }
+    a { color: var(--accent); text-decoration-color: rgba(30,58,138,.3); text-underline-offset: .2em; }
     a:hover { color: var(--accent-dark); text-decoration-color: currentColor; }
     h1, h2, h3 { margin: 0; line-height: 1.15; font-weight: 700; }
     p { margin: 0 0 1rem; }
@@ -57,7 +61,6 @@
       font-size: .88rem; font-weight: 600; border-bottom: 3px solid transparent;
     }
     .nav-links a:hover, .nav-links a.active { color: var(--ink); border-bottom-color: var(--accent); }
-    .nav-links .nav-cfp { color: var(--kicker); }
     .nav-toggle {
       display: none; width: 2.6rem; height: 2.6rem; align-items: center; justify-content: center;
       background: transparent; border: 1px solid var(--line); border-radius: var(--radius); cursor: pointer; font-size: 1.3rem; color: var(--ink);
@@ -74,19 +77,19 @@
 
     /* Hero */
     .hero { color: #f3f4f6; background: var(--dark) url("./img/aaai2027/hero-series.svg") right center / cover no-repeat; }
-    @media (max-width: 700px) { .hero { background-image: linear-gradient(rgba(11,20,36,.72), rgba(11,20,36,.72)), url("./img/aaai2027/hero-series.svg"); } }
+    @media (max-width: 700px) { .hero { background-image: linear-gradient(rgba(15,29,58,.72), rgba(15,29,58,.72)), url("./img/aaai2027/hero-series.svg"); } }
     .hero-inner { min-height: clamp(28rem, 60vh, 36rem); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding-block: 4rem; }
     .kicker { margin: 0 0 .75rem; color: var(--kicker); font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
-    .hero .kicker { color: #5eead4; }
+    .hero .kicker { color: var(--brand-light); }
     .hero h1 { max-width: 18ch; font-size: clamp(2.4rem, 5.4vw, 3.85rem); color: #fff; }
     .hero-sub { margin: 1rem 0 0; font-size: clamp(1.15rem, 2vw, 1.5rem); font-weight: 600; color: #e5e7eb; }
     .hero-meta { display: flex; flex-wrap: wrap; gap: .5rem 1.6rem; margin: 1.6rem 0 2rem; padding: 0; list-style: none; font-weight: 600; font-size: .95rem; }
-    .hero-meta li::before { content: "\25CF"; color: #f2c14e; margin-right: .5rem; font-size: .7em; vertical-align: .15em; }
+    .hero-meta li::before { content: "\25CF"; color: var(--brand-light); margin-right: .5rem; font-size: .7em; vertical-align: .15em; }
     .hero-meta a { color: inherit; }
     .btns { display: flex; flex-wrap: wrap; gap: .75rem; }
     .btn { display: inline-block; padding: .7rem 1.15rem; border-radius: var(--radius); font-weight: 650; font-size: .92rem; text-decoration: none; }
-    .btn-primary { background: #e05a3a; color: #fff; }
-    .btn-primary:hover { background: #c4472a; color: #fff; }
+    .btn-primary { background: #fff; color: var(--brand); }
+    .btn-primary:hover { background: var(--brand-light); color: var(--brand); }
     .btn-outline { color: #fff; border: 1px solid rgba(255,255,255,.45); }
     .btn-outline:hover { color: #fff; background: rgba(255,255,255,.08); }
     .btn-dark { background: var(--ink); color: #fff; }
@@ -107,15 +110,15 @@
     @media (max-width: 900px) { .two-col { grid-template-columns: 1fr !important; gap: 2rem; } }
 
     /* Framing figure */
-    .framing { margin: 2.5rem 0 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 1.25rem; }
+    .framing { margin: 3rem 0 0; padding: 2rem 0 0; border-top: 1px solid var(--line); }
     .framing svg { display: block; width: 100%; height: auto; font-family: Inter, sans-serif; }
-    .framing .fig-narrow { display: none; max-width: 440px; margin: 0 auto; }
-    @media (max-width: 760px) { .framing .fig-wide { display: none; } .framing .fig-narrow { display: block; } .framing { padding: 0; border: 0; } }
-    .framing figcaption { margin-top: .75rem; font-size: .82rem; color: var(--muted); }
+    .framing .fig-narrow { display: none; max-width: 420px; }
+    @media (max-width: 760px) { .framing .fig-wide { display: none; } .framing .fig-narrow { display: block; } .framing { padding-top: 1.5rem; } }
+    .framing figcaption { margin-top: 1.25rem; font-size: .82rem; color: var(--muted); }
 
     /* Topics */
     .topic-list { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 3rem; counter-reset: t; }
-    .topic-list li { counter-increment: t; display: flex; gap: 1rem; padding: .75rem 0; border-top: 1px solid #dfe3e8; }
+    .topic-list li { counter-increment: t; display: flex; gap: 1rem; padding: .75rem 0; border-top: 1px solid var(--line); }
     .topic-list li::before { content: counter(t, decimal-leading-zero); font-size: .78rem; font-weight: 700; color: var(--teal); flex: none; width: 1.6rem; padding-top: .15rem; font-variant-numeric: tabular-nums; }
     .topic-list li.wide { grid-column: 1 / -1; }
     @media (max-width: 760px) { .topic-list { grid-template-columns: 1fr; } }
@@ -143,8 +146,9 @@
     .day-title { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin-bottom: .75rem; }
     .day-bar { display: flex; height: 46px; border-radius: 4px; overflow: hidden; gap: 2px; }
     .day-bar > div { display: grid; place-items: center; font-size: .72rem; font-weight: 650; color: #fff; white-space: nowrap; overflow: hidden; min-width: 0; }
-    .day-bar .k { background: #1d4ed8; } .day-bar .o { background: #0f766e; } .day-bar .p { background: #b4441f; }
-    .day-bar .s { background: #7c3aed; } .day-bar .b { background: #e5e7eb; color: #6b7280; } .day-bar .m { background: #9ca3af; }
+    .day-bar .k { background: var(--brand); } .day-bar .o { background: #4a66b3; } .day-bar .p { background: #7f96cc; }
+    .day-bar .s { background: var(--brand-light); color: var(--brand); } .day-bar .m { background: #d9dee7; }
+    .day-bar .b { background: repeating-linear-gradient(135deg, #f1f3f6 0 6px, #e7eaef 6px 7px); color: var(--muted); }
     .day-ticks { position: relative; height: 1.3rem; margin-top: .35rem; font-size: .72rem; color: var(--muted); font-variant-numeric: tabular-nums; }
     .day-ticks span { position: absolute; transform: translateX(-50%); }
     .day-ticks span:first-child { transform: none; } .day-ticks span:last-child { transform: translateX(-100%); }
@@ -180,7 +184,7 @@
     .person { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
     .person .photo { aspect-ratio: 1 / 1; background: var(--paper); }
     .person .photo img { width: 100%; height: 100%; object-fit: cover; }
-    .person .photo.initials { display: grid; place-items: center; font-size: 2.6rem; font-weight: 700; color: #94a3b8; background: linear-gradient(135deg, #eef2f7, #e2e8f0); }
+    .person .photo.initials { display: grid; place-items: center; font-size: 2.4rem; font-weight: 600; color: var(--brand-mid); background: var(--brand-soft); }
     .person .info { padding: .8rem .9rem 1rem; }
     .person h3 { font-size: .98rem; margin-bottom: .25rem; }
     .person h3 a { color: var(--ink); text-decoration: none; }
@@ -196,11 +200,11 @@
     footer { background: var(--dark); color: #cbd5e1; padding: 2.5rem 0; font-size: .9rem; }
     footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; }
     .past { width: 100%; padding-bottom: 1.5rem; margin-bottom: .5rem; border-bottom: 1px solid rgba(255,255,255,.12); }
-    .past-title { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: #94a3b8; margin-bottom: .6rem; }
-    .past-links { display: flex; flex-wrap: wrap; gap: .5rem; }
-    .past-links a { color: #e2e8f0; text-decoration: none; font-size: .82rem; font-weight: 600; padding: .3rem .7rem; border: 1px solid rgba(255,255,255,.18); border-radius: 999px; }
-    .past-links a:hover { border-color: #5eead4; color: #5eead4; }
-    footer a { color: #5eead4; }
+    .past-title { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--brand-mid); margin-bottom: .6rem; }
+    .past-links { display: flex; flex-wrap: wrap; gap: .4rem 1.4rem; }
+    .past-links a { color: #e2e8f0; text-decoration: none; font-size: .88rem; font-weight: 500; }
+    .past-links a:hover { color: #fff; text-decoration: underline; }
+    footer a { color: var(--brand-light); }
 
     @media (max-width: 600px) { .wrap { width: calc(100% - 2rem); } .section { padding: 3.5rem 0; } .nav-links { left: -1rem; right: -1rem; } }
   </style>
@@ -210,7 +214,7 @@
   <nav class="site-nav">
     <div class="wrap nav-inner">
       <a class="brand" href="#top">
-        <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#0b1424"/><polyline points="5,21 10,15 14,18 19,9 23,15 27,12" fill="none" stroke="#5eead4" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#0f1d3a"/><polyline points="5,21 10,15 14,18 19,9 23,15 27,12" fill="none" stroke="#c9d6f2" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span class="brand-copy"><span class="brand-name">AI4TS</span><span class="brand-venue">AAAI'27 Workshop · Montreal</span></span>
       </a>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
@@ -257,255 +261,198 @@
         </div>
 
         <figure class="framing">
-          <svg class="fig-wide" viewBox="0 0 1100 520" role="img" aria-label="AI4TS workshop overview">
-<defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#9ca3af"/></marker></defs>
-<rect x="14" y="12" width="22" height="3" fill="#1d4ed8"/>
-<text x="44" y="18" font-size="11" font-weight="700" fill="#1d4ed8" text-anchor="start" letter-spacing=".5">01 · MOTIVATION</text>
-<text x="44" y="34" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >why time series, why now</text>
-<rect x="382" y="12" width="22" height="3" fill="#0f766e"/>
-<text x="412" y="18" font-size="11" font-weight="700" fill="#0f766e" text-anchor="start" letter-spacing=".5">02 · RESEARCH FOCUS</text>
-<text x="412" y="34" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >theory, algorithms, and applications</text>
-<rect x="774" y="12" width="22" height="3" fill="#b4441f"/>
-<text x="804" y="18" font-size="11" font-weight="700" fill="#b4441f" text-anchor="start" letter-spacing=".5">03 · WORKSHOP FORMAT</text>
-<text x="804" y="34" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >a full-day program at AAAI'27</text>
-<rect x="8" y="46" width="320" height="332" rx="8" fill="#eff4ff" stroke="#c7d6fb"/>
-<text x="24" y="72" font-size="13.5" font-weight="700" fill="#111827" text-anchor="start" >Time series data are ubiquitous</text>
-<text x="24" y="90" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >massive data · complex structures · HPC advances</text>
-<polyline points="24,112.0 38,123.6 52,116.8 66,119.2 80,108.7 94,97.8 108,109.0 122,110.3 136,117.8 150,126.5 164,111.9 178,108.3 192,105.3 206,99.4 220,115.9 234,120.3 248,117.7 262,120.9 276,104.6 290,100.8 304,109.0" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-linejoin="round"/>
-<rect x="24" y="134" width="93" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
-<text x="70" y="150" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >IoT devices</text>
-<rect x="123" y="134" width="86" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
-<text x="166" y="150" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >Healthcare</text>
-<rect x="24" y="164" width="126" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
-<text x="87" y="180" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >Wearable devices</text>
-<rect x="156" y="164" width="112" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
-<text x="212" y="180" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >Smart vehicles</text>
-<rect x="24" y="194" width="132" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
-<text x="90" y="210" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >Financial markets</text>
-<rect x="162" y="194" width="145" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
-<text x="235" y="210" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >Biological sciences</text>
-<rect x="24" y="224" width="165" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
-<text x="107" y="240" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >Environmental sciences</text>
-<text x="24" y="270" font-size="11" font-weight="700" fill="#1d4ed8" text-anchor="start" >Fundamental challenges</text>
-<rect x="24" y="278" width="112" height="24" rx="12.0" fill="#1d4ed8" stroke="#1d4ed8"/>
-<text x="80" y="294" font-size="11" font-weight="600" fill="#fff" text-anchor="middle" >Representation</text>
-<rect x="142" y="278" width="112" height="24" rx="12.0" fill="#1d4ed8" stroke="#1d4ed8"/>
-<text x="199" y="294" font-size="11" font-weight="600" fill="#fff" text-anchor="middle" >Classification</text>
-<rect x="24" y="308" width="86" height="24" rx="12.0" fill="#1d4ed8" stroke="#1d4ed8"/>
-<text x="67" y="324" font-size="11" font-weight="600" fill="#fff" text-anchor="middle" >Prediction</text>
-<rect x="116" y="308" width="119" height="24" rx="12.0" fill="#1d4ed8" stroke="#1d4ed8"/>
-<text x="176" y="324" font-size="11" font-weight="600" fill="#fff" text-anchor="middle" >Causal analysis</text>
-<rect x="24" y="338" width="145" height="24" rx="12.0" fill="#1d4ed8" stroke="#1d4ed8"/>
-<text x="97" y="354" font-size="11" font-weight="600" fill="#fff" text-anchor="middle" >Multimodal learning</text>
-<rect x="376" y="46" width="348" height="332" rx="8" fill="#0b1424"/>
-<text x="550" y="74" font-size="15" font-weight="700" fill="#fff" text-anchor="middle" >AI4TS @ AAAI'27</text>
-<text x="550" y="92" font-size="10.5" font-weight="400" fill="#94a3b8" text-anchor="middle" >new theories and algorithms for time series analysis</text>
-<rect x="392" y="106" width="100" height="62" rx="6" fill="#13213a" stroke="#5eead4" stroke-opacity=".6"/>
-<rect x="392" y="106" width="100" height="3" fill="#5eead4"/>
-<text x="442" y="148" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle" >Theory</text>
-<text x="442" y="130" font-size="15" font-weight="700" fill="#5eead4" text-anchor="middle" >∑</text>
-<rect x="500" y="106" width="100" height="62" rx="6" fill="#13213a" stroke="#7aa2f7" stroke-opacity=".6"/>
-<rect x="500" y="106" width="100" height="3" fill="#7aa2f7"/>
-<text x="550" y="148" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle" >Algorithms</text>
-<g fill="none" stroke="#7aa2f7" stroke-width="1.8"><rect x="538" y="121" width="8" height="8"/><rect x="554" y="121" width="8" height="8"/><path d="M546 125h8"/></g>
-<rect x="608" y="106" width="100" height="62" rx="6" fill="#13213a" stroke="#f2c14e" stroke-opacity=".6"/>
-<rect x="608" y="106" width="100" height="3" fill="#f2c14e"/>
-<text x="658" y="148" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle" >Applications</text>
-<g fill="none" stroke="#f2c14e" stroke-width="1.6"><circle cx="658" cy="125" r="7"/><path d="M651 125h14M658 118c3 4 3 10 0 14M658 118c-3 4-3 10 0 14"/></g>
-<text x="392" y="192" font-size="10" font-weight="700" fill="#5eead4" text-anchor="start" letter-spacing=".5">EMERGING DIRECTIONS</text>
-<rect x="392" y="200" width="178" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
-<text x="481" y="216" font-size="11" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Foundation models &amp; LLMs</text>
-<rect x="392" y="230" width="145" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
-<text x="465" y="246" font-size="11" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Multimodal learning</text>
-<rect x="543" y="230" width="86" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
-<text x="586" y="246" font-size="11" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Agentic AI</text>
-<text x="392" y="278" font-size="10" font-weight="700" fill="#5eead4" text-anchor="start" letter-spacing=".5">BRINGING TOGETHER</text>
-<rect x="392" y="286" width="70" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
-<text x="427" y="302" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Academia</text>
-<rect x="468" y="286" width="70" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
-<text x="504" y="302" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Industry</text>
-<rect x="545" y="286" width="96" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
-<text x="593" y="302" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Policymakers</text>
-<rect x="392" y="316" width="121" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
-<text x="452" y="332" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Machine learning</text>
-<rect x="519" y="316" width="96" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
-<text x="567" y="332" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Data science</text>
-<rect x="620" y="316" width="83" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
-<text x="662" y="332" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Statistics</text>
-<rect x="392" y="346" width="96" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
-<text x="440" y="362" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Econometrics</text>
-<rect x="772" y="46" width="320" height="332" rx="8" fill="#fdf3ee" stroke="#f3cdbd"/>
-<rect x="786" y="60" width="292" height="64" rx="6" fill="#fff" stroke="#f1dcd2"/>
-<rect x="798" y="74" width="44" height="36" rx="6" fill="#b4441f"/>
-<text x="820" y="97" font-size="14" font-weight="800" fill="#fff" text-anchor="middle" >5</text>
-<text x="856" y="84" font-size="13" font-weight="700" fill="#111827" text-anchor="start" >Keynote talks</text>
-<text x="856" y="101" font-size="10.5" font-weight="400" fill="#4b5563" text-anchor="start" >invited speakers from</text>
-<text x="856" y="115" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >academia and industry</text>
-<rect x="786" y="135" width="292" height="64" rx="6" fill="#fff" stroke="#f1dcd2"/>
-<rect x="798" y="149" width="44" height="36" rx="6" fill="#b4441f"/>
-<text x="820" y="172" font-size="14" font-weight="800" fill="#fff" text-anchor="middle" >◆</text>
-<text x="856" y="159" font-size="13" font-weight="700" fill="#111827" text-anchor="start" >Oral &amp; poster papers</text>
-<text x="856" y="176" font-size="10.5" font-weight="400" fill="#4b5563" text-anchor="start" >8-min talk + 2-min Q&amp;A</text>
-<text x="856" y="190" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >poster session for accepted papers</text>
-<rect x="786" y="210" width="292" height="64" rx="6" fill="#fff" stroke="#f1dcd2"/>
-<rect x="798" y="224" width="44" height="36" rx="6" fill="#b4441f"/>
-<text x="820" y="247" font-size="14" font-weight="800" fill="#fff" text-anchor="middle" >★</text>
-<text x="856" y="234" font-size="13" font-weight="700" fill="#111827" text-anchor="start" >Award Ceremony</text>
-<text x="856" y="251" font-size="10.5" font-weight="400" fill="#4b5563" text-anchor="start" >3:20 pm - 3:30 pm</text>
-<rect x="786" y="285" width="292" height="64" rx="6" fill="#fff" stroke="#f1dcd2"/>
-<rect x="798" y="299" width="44" height="36" rx="6" fill="#b4441f"/>
-<text x="820" y="322" font-size="14" font-weight="800" fill="#fff" text-anchor="middle" >☰</text>
-<text x="856" y="309" font-size="13" font-weight="700" fill="#111827" text-anchor="start" >Panel discussion</text>
-<text x="856" y="326" font-size="10.5" font-weight="400" fill="#4b5563" text-anchor="start" >Moderator: Dongjin Song</text>
-<text x="856" y="340" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >3:50 pm - 4:30 pm</text>
-<line x1="332" y1="212" x2="368" y2="212" stroke="#9ca3af" stroke-width="2" marker-end="url(#arr)"/>
-<line x1="728" y1="212" x2="764" y2="212" stroke="#9ca3af" stroke-width="2" marker-end="url(#arr)"/>
-<rect x="8" y="396" width="1084" height="116" rx="8" fill="#f9fafb" stroke="#e5e7eb"/>
-<text x="28" y="420" font-size="11" font-weight="700" fill="#374151" text-anchor="start" letter-spacing=".5">THE AI4TS WORKSHOP SERIES</text>
-<line x1="70" y1="474" x2="1030" y2="474" stroke="#d1d5db" stroke-width="2"/>
-<circle cx="70" cy="474" r="6" fill="#fff" stroke="#64748b" stroke-width="2.5"/>
-<text x="70" y="456" font-size="11.5" font-weight="700" fill="#64748b" text-anchor="middle" >IJCAI'22</text>
-<circle cx="190" cy="474" r="6" fill="#fff" stroke="#64748b" stroke-width="2.5"/>
-<text x="190" y="456" font-size="11.5" font-weight="700" fill="#64748b" text-anchor="middle" >IJCAI'23</text>
-<circle cx="310" cy="474" r="6" fill="#fff" stroke="#64748b" stroke-width="2.5"/>
-<text x="310" y="456" font-size="11.5" font-weight="700" fill="#64748b" text-anchor="middle" >ICDM'23</text>
-<circle cx="430" cy="474" r="6" fill="#fff" stroke="#1d4ed8" stroke-width="2.5"/>
-<text x="430" y="456" font-size="11.5" font-weight="700" fill="#1d4ed8" text-anchor="middle" >AAAI'24</text>
-<circle cx="550" cy="474" r="6" fill="#fff" stroke="#64748b" stroke-width="2.5"/>
-<text x="550" y="456" font-size="11.5" font-weight="700" fill="#64748b" text-anchor="middle" >IJCAI'24</text>
-<circle cx="670" cy="474" r="6" fill="#fff" stroke="#1d4ed8" stroke-width="2.5"/>
-<text x="670" y="456" font-size="11.5" font-weight="700" fill="#1d4ed8" text-anchor="middle" >AAAI'25</text>
-<circle cx="790" cy="474" r="6" fill="#fff" stroke="#64748b" stroke-width="2.5"/>
-<text x="790" y="456" font-size="11.5" font-weight="700" fill="#64748b" text-anchor="middle" >WebConf'25</text>
-<circle cx="910" cy="474" r="6" fill="#fff" stroke="#1d4ed8" stroke-width="2.5"/>
-<text x="910" y="456" font-size="11.5" font-weight="700" fill="#1d4ed8" text-anchor="middle" >AAAI'26</text>
-<circle cx="1030" cy="474" r="13" fill="#b4441f" fill-opacity=".15"/><circle cx="1030" cy="474" r="7" fill="#b4441f"/>
-<text x="1030" y="452" font-size="13" font-weight="800" fill="#b4441f" text-anchor="middle" >AAAI'27</text>
-<text x="1030" y="502" font-size="10.5" font-weight="600" fill="#b4441f" text-anchor="middle" >Montreal, Canada</text>
+          <svg class="fig-wide" viewBox="-2 -2 1104 469" role="img" aria-label="AI4TS workshop overview: motivation, research focus, workshop format, and the workshop series">
+<text x="0" y="28" font-size="22" font-weight="700" fill="#1e3a8a" text-anchor="start">01</text>
+<text x="40" y="17" font-size="15" font-weight="700" fill="#111827" text-anchor="start">Motivation</text>
+<text x="40" y="33" font-size="11" font-weight="400" fill="#6b7280" text-anchor="start">time series data are ubiquitous</text>
+<line x1="0" y1="48" x2="330" y2="48" stroke="#111827"/>
+<polyline points="0.0,96.2 5.5,100.2 11.0,98.0 16.5,97.6 22.0,102.5 27.5,106.2 33.0,101.3 38.5,91.1 44.0,85.0 49.5,86.1 55.0,87.4 60.5,83.0 66.0,77.7 71.5,79.9 77.0,89.4 82.5,97.2 88.0,97.6 93.5,95.8 99.0,99.2 104.5,105.6 110.0,106.2 115.5,98.1 121.0,89.2 126.5,87.0 132.0,88.8 137.5,86.7 143.0,79.8 148.5,76.6 154.0,82.6 159.5,92.1 165.0,96.1 170.5,94.6 176.0,95.5 181.5,102.2 187.0,107.6 192.5,104.2 198.0,95.0 203.5,89.2 209.0,67.5 214.5,90.1 220.0,84.2 225.5,77.1 231.0,77.6 236.5,85.9 242.0,93.0 247.5,93.5 253.0,92.5 258.5,97.2 264.0,105.3 269.5,107.6 275.0,101.1 280.5,93.1 286.0,91.2 291.5,92.6 297.0,89.4 302.5,80.9 308.0,76.0 313.5,80.3 319.0,88.5 324.5,91.9 330.0,90.5" fill="none" stroke="#1e3a8a" stroke-width="1.6" stroke-linejoin="round"/>
+<line x1="0" y1="118" x2="330" y2="118" stroke="#d9dee7"/>
+<text x="0" y="142" font-size="10" font-weight="700" fill="#6b7280" text-anchor="start">DATA FROM</text>
+<rect x="0" y="157" width="5" height="5" fill="#1e3a8a"/>
+<text x="13" y="164" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">IoT devices</text>
+<rect x="0" y="178" width="5" height="5" fill="#1e3a8a"/>
+<text x="13" y="185" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Healthcare</text>
+<rect x="0" y="199" width="5" height="5" fill="#1e3a8a"/>
+<text x="13" y="206" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Wearable devices</text>
+<rect x="0" y="220" width="5" height="5" fill="#1e3a8a"/>
+<text x="13" y="227" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Smart vehicles</text>
+<rect x="165" y="157" width="5" height="5" fill="#1e3a8a"/>
+<text x="178" y="164" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Financial markets</text>
+<rect x="165" y="178" width="5" height="5" fill="#1e3a8a"/>
+<text x="178" y="185" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Biological sciences</text>
+<rect x="165" y="199" width="5" height="5" fill="#1e3a8a"/>
+<text x="178" y="206" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Environmental sciences</text>
+<text x="0" y="256" font-size="10" font-weight="700" fill="#6b7280" text-anchor="start">FUNDAMENTAL CHALLENGES</text>
+<rect x="0" y="271" width="5" height="5" fill="#1e3a8a"/>
+<text x="13" y="278" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Representation</text>
+<rect x="0" y="292" width="5" height="5" fill="#1e3a8a"/>
+<text x="13" y="299" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Classification</text>
+<rect x="0" y="313" width="5" height="5" fill="#1e3a8a"/>
+<text x="13" y="320" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Prediction</text>
+<rect x="165" y="271" width="5" height="5" fill="#1e3a8a"/>
+<text x="178" y="278" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Causal analysis</text>
+<rect x="165" y="292" width="5" height="5" fill="#1e3a8a"/>
+<text x="178" y="299" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Multimodal learning</text>
+<text x="385" y="28" font-size="22" font-weight="700" fill="#1e3a8a" text-anchor="start">02</text>
+<text x="425" y="17" font-size="15" font-weight="700" fill="#111827" text-anchor="start">Research focus</text>
+<text x="425" y="33" font-size="11" font-weight="400" fill="#6b7280" text-anchor="start">new theories and algorithms</text>
+<line x1="385" y1="48" x2="715" y2="48" stroke="#111827"/>
+<rect x="385" y="70" width="105" height="48" fill="#eef2fa" stroke="#8ea2cf"/>
+<text x="437" y="99" font-size="13" font-weight="700" fill="#1e3a8a" text-anchor="middle">Theory</text>
+<rect x="498" y="70" width="105" height="48" fill="#eef2fa" stroke="#8ea2cf"/>
+<text x="550" y="99" font-size="13" font-weight="700" fill="#1e3a8a" text-anchor="middle">Algorithms</text>
+<rect x="610" y="70" width="105" height="48" fill="#eef2fa" stroke="#8ea2cf"/>
+<text x="663" y="99" font-size="13" font-weight="700" fill="#1e3a8a" text-anchor="middle">Applications</text>
+<text x="385" y="146" font-size="10" font-weight="700" fill="#6b7280" text-anchor="start">EMERGING DIRECTIONS</text>
+<rect x="385" y="161" width="5" height="5" fill="#1e3a8a"/>
+<text x="398" y="168" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Foundation models &amp; LLMs</text>
+<rect x="385" y="182" width="5" height="5" fill="#1e3a8a"/>
+<text x="398" y="189" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Multimodal learning</text>
+<rect x="385" y="203" width="5" height="5" fill="#1e3a8a"/>
+<text x="398" y="210" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Agentic AI</text>
+<text x="385" y="239" font-size="10" font-weight="700" fill="#6b7280" text-anchor="start">BRINGING TOGETHER</text>
+<text x="385" y="261" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Academia · Industry · Policymakers</text>
+<text x="385" y="282" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Machine learning · Data science</text>
+<text x="385" y="303" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Statistics · Econometrics</text>
+<text x="770" y="28" font-size="22" font-weight="700" fill="#1e3a8a" text-anchor="start">03</text>
+<text x="810" y="17" font-size="15" font-weight="700" fill="#111827" text-anchor="start">Workshop format</text>
+<text x="810" y="33" font-size="11" font-weight="400" fill="#6b7280" text-anchor="start">a full-day program at AAAI'27</text>
+<line x1="770" y1="48" x2="1100" y2="48" stroke="#111827"/>
+<rect x="770.0" y="74" width="3" height="34" fill="#1e3a8a"/>
+<text x="786" y="88" font-size="13.5" font-weight="700" fill="#111827" text-anchor="start">Keynote talks</text>
+<text x="786" y="106" font-size="11.5" font-weight="400" fill="#4b5563" text-anchor="start">Five invited talks from academia and industry</text>
+<line x1="770" y1="120" x2="1100" y2="120" stroke="#d9dee7"/>
+<rect x="770.0" y="132" width="3" height="34" fill="#1e3a8a"/>
+<text x="786" y="146" font-size="13.5" font-weight="700" fill="#111827" text-anchor="start">Oral &amp; poster papers</text>
+<text x="786" y="164" font-size="11.5" font-weight="400" fill="#4b5563" text-anchor="start">8-min talk + 2-min Q&amp;A · poster session</text>
+<line x1="770" y1="178" x2="1100" y2="178" stroke="#d9dee7"/>
+<rect x="770.0" y="190" width="3" height="34" fill="#1e3a8a"/>
+<text x="786" y="204" font-size="13.5" font-weight="700" fill="#111827" text-anchor="start">Award Ceremony</text>
+<text x="786" y="222" font-size="11.5" font-weight="400" fill="#4b5563" text-anchor="start">3:20 pm - 3:30 pm</text>
+<line x1="770" y1="236" x2="1100" y2="236" stroke="#d9dee7"/>
+<rect x="770.0" y="248" width="3" height="34" fill="#1e3a8a"/>
+<text x="786" y="262" font-size="13.5" font-weight="700" fill="#111827" text-anchor="start">Panel discussion</text>
+<text x="786" y="280" font-size="11.5" font-weight="400" fill="#4b5563" text-anchor="start">Moderator: Dongjin Song</text>
+<path d="M352 22l6 6-6 6" fill="none" stroke="#6b7280" stroke-width="1.6"/>
+<path d="M738 22l6 6-6 6" fill="none" stroke="#6b7280" stroke-width="1.6"/>
+<line x1="0" y1="359" x2="1100" y2="359" stroke="#111827"/>
+<text x="0" y="381" font-size="10" font-weight="700" fill="#6b7280" text-anchor="start">THE AI4TS WORKSHOP SERIES</text>
+<line x1="40" y1="429" x2="1030" y2="429" stroke="#d9dee7" stroke-width="2"/>
+<circle cx="40" cy="429" r="5" fill="#fff" stroke="#6b7280" stroke-width="1.6"/>
+<text x="40" y="413" font-size="11.5" font-weight="600" fill="#4b5563" text-anchor="middle">IJCAI'22</text>
+<circle cx="164" cy="429" r="5" fill="#fff" stroke="#6b7280" stroke-width="1.6"/>
+<text x="164" y="413" font-size="11.5" font-weight="600" fill="#4b5563" text-anchor="middle">IJCAI'23</text>
+<circle cx="288" cy="429" r="5" fill="#fff" stroke="#6b7280" stroke-width="1.6"/>
+<text x="288" y="413" font-size="11.5" font-weight="600" fill="#4b5563" text-anchor="middle">ICDM'23</text>
+<circle cx="411" cy="429" r="5" fill="#fff" stroke="#6b7280" stroke-width="1.6"/>
+<text x="411" y="413" font-size="11.5" font-weight="600" fill="#4b5563" text-anchor="middle">AAAI'24</text>
+<circle cx="535" cy="429" r="5" fill="#fff" stroke="#6b7280" stroke-width="1.6"/>
+<text x="535" y="413" font-size="11.5" font-weight="600" fill="#4b5563" text-anchor="middle">IJCAI'24</text>
+<circle cx="659" cy="429" r="5" fill="#fff" stroke="#6b7280" stroke-width="1.6"/>
+<text x="659" y="413" font-size="11.5" font-weight="600" fill="#4b5563" text-anchor="middle">AAAI'25</text>
+<circle cx="782" cy="429" r="5" fill="#fff" stroke="#6b7280" stroke-width="1.6"/>
+<text x="782" y="413" font-size="11.5" font-weight="600" fill="#4b5563" text-anchor="middle">WebConf'25</text>
+<circle cx="906" cy="429" r="5" fill="#fff" stroke="#6b7280" stroke-width="1.6"/>
+<text x="906" y="413" font-size="11.5" font-weight="600" fill="#4b5563" text-anchor="middle">AAAI'26</text>
+<circle cx="1030" cy="429" r="6" fill="#1e3a8a"/>
+<text x="1030" y="413" font-size="13" font-weight="700" fill="#1e3a8a" text-anchor="middle">AAAI'27</text>
+<text x="1030" y="453" font-size="11" font-weight="600" fill="#1e3a8a" text-anchor="middle">Montreal, Canada</text>
 </svg>
-          <svg class="fig-narrow" viewBox="0 0 400 1456" role="img" aria-label="AI4TS workshop overview"><defs><marker id="arrm" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#9ca3af"/></marker></defs>
-<rect x="10" y="12" width="22" height="3" fill="#1d4ed8"/>
-<text x="40" y="18" font-size="11" font-weight="700" fill="#1d4ed8" text-anchor="start" letter-spacing=".5">01 · MOTIVATION</text>
-<text x="40" y="34" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >why time series, why now</text>
-<rect x="8" y="44" width="384" height="272" rx="8" fill="#eff4ff" stroke="#c7d6fb"/>
-<text x="24" y="70" font-size="13.5" font-weight="700" fill="#111827" text-anchor="start" >Time series data are ubiquitous</text>
-<text x="24" y="88" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >massive data · complex structures · HPC advances</text>
-<polyline points="24,110.0 38,121.6 52,114.8 66,117.2 80,106.7 94,95.8 108,107.0 122,108.3 136,115.8 150,124.5 164,109.9 178,106.3 192,103.3 206,97.4 220,113.9 234,118.3 248,115.7 262,118.9 276,102.6 290,98.8 304,107.0 318,105.9 332,119.8 346,122.0 360,108.9 374,109.2" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-linejoin="round"/>
-<rect x="24" y="132" width="93" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
-<text x="70" y="148" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >IoT devices</text>
-<rect x="123" y="132" width="86" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
-<text x="166" y="148" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >Healthcare</text>
-<rect x="215" y="132" width="126" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
-<text x="277" y="148" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >Wearable devices</text>
-<rect x="24" y="162" width="112" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
-<text x="80" y="178" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >Smart vehicles</text>
-<rect x="142" y="162" width="132" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
-<text x="208" y="178" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >Financial markets</text>
-<rect x="24" y="192" width="145" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
-<text x="97" y="208" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >Biological sciences</text>
-<rect x="175" y="192" width="165" height="24" rx="12.0" fill="#fff" stroke="#dbe3f5"/>
-<text x="258" y="208" font-size="11" font-weight="600" fill="#1f2937" text-anchor="middle" >Environmental sciences</text>
-<text x="24" y="238" font-size="11" font-weight="700" fill="#1d4ed8" text-anchor="start" >Fundamental challenges</text>
-<rect x="24" y="246" width="112" height="24" rx="12.0" fill="#1d4ed8" stroke="#1d4ed8"/>
-<text x="80" y="262" font-size="11" font-weight="600" fill="#fff" text-anchor="middle" >Representation</text>
-<rect x="142" y="246" width="112" height="24" rx="12.0" fill="#1d4ed8" stroke="#1d4ed8"/>
-<text x="199" y="262" font-size="11" font-weight="600" fill="#fff" text-anchor="middle" >Classification</text>
-<rect x="261" y="246" width="86" height="24" rx="12.0" fill="#1d4ed8" stroke="#1d4ed8"/>
-<text x="304" y="262" font-size="11" font-weight="600" fill="#fff" text-anchor="middle" >Prediction</text>
-<rect x="24" y="276" width="119" height="24" rx="12.0" fill="#1d4ed8" stroke="#1d4ed8"/>
-<text x="84" y="292" font-size="11" font-weight="600" fill="#fff" text-anchor="middle" >Causal analysis</text>
-<rect x="149" y="276" width="145" height="24" rx="12.0" fill="#1d4ed8" stroke="#1d4ed8"/>
-<text x="222" y="292" font-size="11" font-weight="600" fill="#fff" text-anchor="middle" >Multimodal learning</text>
-<line x1="200.0" y1="324" x2="200.0" y2="344" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrm)"/>
-<rect x="10" y="356" width="22" height="3" fill="#0f766e"/>
-<text x="40" y="362" font-size="11" font-weight="700" fill="#0f766e" text-anchor="start" letter-spacing=".5">02 · RESEARCH FOCUS</text>
-<text x="40" y="378" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >theory, algorithms, and applications</text>
-<rect x="8" y="388" width="384" height="340" rx="8" fill="#0b1424"/>
-<text x="200" y="416" font-size="15" font-weight="700" fill="#fff" text-anchor="middle" >AI4TS @ AAAI'27</text>
-<text x="200" y="434" font-size="10.5" font-weight="400" fill="#94a3b8" text-anchor="middle" >new theories and algorithms for time series analysis</text>
-<rect x="24" y="448" width="112" height="62" rx="6" fill="#13213a" stroke="#5eead4" stroke-opacity=".6"/>
-<rect x="24" y="448" width="112" height="3" fill="#5eead4"/>
-<text x="80" y="490" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle" >Theory</text>
-<text x="80" y="472" font-size="15" font-weight="700" fill="#5eead4" text-anchor="middle" >∑</text>
-<rect x="144" y="448" width="112" height="62" rx="6" fill="#13213a" stroke="#7aa2f7" stroke-opacity=".6"/>
-<rect x="144" y="448" width="112" height="3" fill="#7aa2f7"/>
-<text x="200" y="490" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle" >Algorithms</text>
-<g fill="none" stroke="#7aa2f7" stroke-width="1.8"><rect x="188" y="463" width="8" height="8"/><rect x="204" y="463" width="8" height="8"/><path d="M196 467h8"/></g>
-<rect x="264" y="448" width="112" height="62" rx="6" fill="#13213a" stroke="#f2c14e" stroke-opacity=".6"/>
-<rect x="264" y="448" width="112" height="3" fill="#f2c14e"/>
-<text x="320" y="490" font-size="12.5" font-weight="700" fill="#fff" text-anchor="middle" >Applications</text>
-<g fill="none" stroke="#f2c14e" stroke-width="1.6"><circle cx="320" cy="467" r="7"/><path d="M313 467h14M320 460c3 4 3 10 0 14M320 460c-3 4-3 10 0 14"/></g>
-<text x="24" y="534" font-size="10" font-weight="700" fill="#5eead4" text-anchor="start" letter-spacing=".5">EMERGING DIRECTIONS</text>
-<rect x="24" y="542" width="178" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
-<text x="113" y="558" font-size="11" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Foundation models &amp; LLMs</text>
-<rect x="208" y="542" width="145" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
-<text x="281" y="558" font-size="11" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Multimodal learning</text>
-<rect x="24" y="572" width="86" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
-<text x="67" y="588" font-size="11" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Agentic AI</text>
-<text x="24" y="620" font-size="10" font-weight="700" fill="#5eead4" text-anchor="start" letter-spacing=".5">BRINGING TOGETHER</text>
-<rect x="24" y="628" width="70" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
-<text x="59" y="644" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Academia</text>
-<rect x="100" y="628" width="70" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
-<text x="136" y="644" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Industry</text>
-<rect x="177" y="628" width="96" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
-<text x="225" y="644" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Policymakers</text>
-<rect x="24" y="658" width="121" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
-<text x="84" y="674" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Machine learning</text>
-<rect x="151" y="658" width="96" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
-<text x="199" y="674" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Data science</text>
-<rect x="252" y="658" width="83" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
-<text x="294" y="674" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Statistics</text>
-<rect x="24" y="688" width="96" height="24" rx="12.0" fill="#13213a" stroke="#2a3b5c"/>
-<text x="72" y="704" font-size="10.5" font-weight="600" fill="#e5e7eb" text-anchor="middle" >Econometrics</text>
-<line x1="200.0" y1="736" x2="200.0" y2="756" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrm)"/>
-<rect x="10" y="768" width="22" height="3" fill="#b4441f"/>
-<text x="40" y="774" font-size="11" font-weight="700" fill="#b4441f" text-anchor="start" letter-spacing=".5">03 · WORKSHOP FORMAT</text>
-<text x="40" y="790" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >a full-day program at AAAI'27</text>
-<rect x="8" y="800" width="384" height="314" rx="8" fill="#fdf3ee" stroke="#f3cdbd"/>
-<rect x="22" y="814" width="356" height="64" rx="6" fill="#fff" stroke="#f1dcd2"/>
-<rect x="34" y="828" width="44" height="36" rx="6" fill="#b4441f"/>
-<text x="56" y="851" font-size="14" font-weight="800" fill="#fff" text-anchor="middle" >5</text>
-<text x="92" y="838" font-size="13" font-weight="700" fill="#111827" text-anchor="start" >Keynote talks</text>
-<text x="92" y="855" font-size="10.5" font-weight="400" fill="#4b5563" text-anchor="start" >invited speakers from</text>
-<text x="92" y="869" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >academia and industry</text>
-<rect x="22" y="889" width="356" height="64" rx="6" fill="#fff" stroke="#f1dcd2"/>
-<rect x="34" y="903" width="44" height="36" rx="6" fill="#b4441f"/>
-<text x="56" y="926" font-size="14" font-weight="800" fill="#fff" text-anchor="middle" >◆</text>
-<text x="92" y="913" font-size="13" font-weight="700" fill="#111827" text-anchor="start" >Oral &amp; poster papers</text>
-<text x="92" y="930" font-size="10.5" font-weight="400" fill="#4b5563" text-anchor="start" >8-min talk + 2-min Q&amp;A</text>
-<text x="92" y="944" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >poster session for accepted papers</text>
-<rect x="22" y="964" width="356" height="64" rx="6" fill="#fff" stroke="#f1dcd2"/>
-<rect x="34" y="978" width="44" height="36" rx="6" fill="#b4441f"/>
-<text x="56" y="1001" font-size="14" font-weight="800" fill="#fff" text-anchor="middle" >★</text>
-<text x="92" y="988" font-size="13" font-weight="700" fill="#111827" text-anchor="start" >Award Ceremony</text>
-<text x="92" y="1005" font-size="10.5" font-weight="400" fill="#4b5563" text-anchor="start" >3:20 pm - 3:30 pm</text>
-<rect x="22" y="1039" width="356" height="64" rx="6" fill="#fff" stroke="#f1dcd2"/>
-<rect x="34" y="1053" width="44" height="36" rx="6" fill="#b4441f"/>
-<text x="56" y="1076" font-size="14" font-weight="800" fill="#fff" text-anchor="middle" >☰</text>
-<text x="92" y="1063" font-size="13" font-weight="700" fill="#111827" text-anchor="start" >Panel discussion</text>
-<text x="92" y="1080" font-size="10.5" font-weight="400" fill="#4b5563" text-anchor="start" >Moderator: Dongjin Song</text>
-<text x="92" y="1094" font-size="10.5" font-weight="400" fill="#6b7280" text-anchor="start" >3:50 pm - 4:30 pm</text>
-<rect x="8" y="1134" width="384" height="314" rx="8" fill="#f9fafb" stroke="#e5e7eb"/>
-<text x="24" y="1158" font-size="11" font-weight="700" fill="#374151" text-anchor="start" letter-spacing=".5">THE AI4TS WORKSHOP SERIES</text>
-<line x1="40" y1="1184" x2="40" y2="1424" stroke="#d1d5db" stroke-width="2"/>
-<circle cx="40" cy="1184" r="5.5" fill="#fff" stroke="#64748b" stroke-width="2.5"/>
-<text x="62" y="1188" font-size="12" font-weight="700" fill="#64748b" text-anchor="start" >IJCAI'22</text>
-<circle cx="40" cy="1214" r="5.5" fill="#fff" stroke="#64748b" stroke-width="2.5"/>
-<text x="62" y="1218" font-size="12" font-weight="700" fill="#64748b" text-anchor="start" >IJCAI'23</text>
-<circle cx="40" cy="1244" r="5.5" fill="#fff" stroke="#64748b" stroke-width="2.5"/>
-<text x="62" y="1248" font-size="12" font-weight="700" fill="#64748b" text-anchor="start" >ICDM'23</text>
-<circle cx="40" cy="1274" r="5.5" fill="#fff" stroke="#1d4ed8" stroke-width="2.5"/>
-<text x="62" y="1278" font-size="12" font-weight="700" fill="#1d4ed8" text-anchor="start" >AAAI'24</text>
-<circle cx="40" cy="1304" r="5.5" fill="#fff" stroke="#64748b" stroke-width="2.5"/>
-<text x="62" y="1308" font-size="12" font-weight="700" fill="#64748b" text-anchor="start" >IJCAI'24</text>
-<circle cx="40" cy="1334" r="5.5" fill="#fff" stroke="#1d4ed8" stroke-width="2.5"/>
-<text x="62" y="1338" font-size="12" font-weight="700" fill="#1d4ed8" text-anchor="start" >AAAI'25</text>
-<circle cx="40" cy="1364" r="5.5" fill="#fff" stroke="#64748b" stroke-width="2.5"/>
-<text x="62" y="1368" font-size="12" font-weight="700" fill="#64748b" text-anchor="start" >WebConf'25</text>
-<circle cx="40" cy="1394" r="5.5" fill="#fff" stroke="#1d4ed8" stroke-width="2.5"/>
-<text x="62" y="1398" font-size="12" font-weight="700" fill="#1d4ed8" text-anchor="start" >AAAI'26</text>
-<circle cx="40" cy="1424" r="12" fill="#b4441f" fill-opacity=".15"/><circle cx="40" cy="1424" r="6.5" fill="#b4441f"/>
-<text x="62" y="1429" font-size="13" font-weight="800" fill="#b4441f" text-anchor="start" >AAAI'27 · Montreal, Canada</text>
+          <svg class="fig-narrow" viewBox="-2 -2 384 1300" role="img" aria-label="AI4TS workshop overview">
+<text x="0" y="28" font-size="22" font-weight="700" fill="#1e3a8a" text-anchor="start">01</text>
+<text x="40" y="17" font-size="15" font-weight="700" fill="#111827" text-anchor="start">Motivation</text>
+<text x="40" y="33" font-size="11" font-weight="400" fill="#6b7280" text-anchor="start">time series data are ubiquitous</text>
+<line x1="0" y1="48" x2="380" y2="48" stroke="#111827"/>
+<polyline points="0.0,96.2 6.3,100.2 12.7,98.0 19.0,97.6 25.3,102.5 31.7,106.2 38.0,101.3 44.3,91.1 50.7,85.0 57.0,86.1 63.3,87.4 69.7,83.0 76.0,77.7 82.3,79.9 88.7,89.4 95.0,97.2 101.3,97.6 107.7,95.8 114.0,99.2 120.3,105.6 126.7,106.2 133.0,98.1 139.3,89.2 145.7,87.0 152.0,88.8 158.3,86.7 164.7,79.8 171.0,76.6 177.3,82.6 183.7,92.1 190.0,96.1 196.3,94.6 202.7,95.5 209.0,102.2 215.3,107.6 221.7,104.2 228.0,95.0 234.3,89.2 240.7,67.5 247.0,90.1 253.3,84.2 259.7,77.1 266.0,77.6 272.3,85.9 278.7,93.0 285.0,93.5 291.3,92.5 297.7,97.2 304.0,105.3 310.3,107.6 316.7,101.1 323.0,93.1 329.3,91.2 335.7,92.6 342.0,89.4 348.3,80.9 354.7,76.0 361.0,80.3 367.3,88.5 373.7,91.9 380.0,90.5" fill="none" stroke="#1e3a8a" stroke-width="1.6" stroke-linejoin="round"/>
+<line x1="0" y1="118" x2="380" y2="118" stroke="#d9dee7"/>
+<text x="0" y="142" font-size="10" font-weight="700" fill="#6b7280" text-anchor="start">DATA FROM</text>
+<rect x="0" y="157" width="5" height="5" fill="#1e3a8a"/>
+<text x="13" y="164" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">IoT devices</text>
+<rect x="0" y="178" width="5" height="5" fill="#1e3a8a"/>
+<text x="13" y="185" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Healthcare</text>
+<rect x="0" y="199" width="5" height="5" fill="#1e3a8a"/>
+<text x="13" y="206" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Wearable devices</text>
+<rect x="0" y="220" width="5" height="5" fill="#1e3a8a"/>
+<text x="13" y="227" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Smart vehicles</text>
+<rect x="190" y="157" width="5" height="5" fill="#1e3a8a"/>
+<text x="203" y="164" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Financial markets</text>
+<rect x="190" y="178" width="5" height="5" fill="#1e3a8a"/>
+<text x="203" y="185" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Biological sciences</text>
+<rect x="190" y="199" width="5" height="5" fill="#1e3a8a"/>
+<text x="203" y="206" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Environmental sciences</text>
+<text x="0" y="256" font-size="10" font-weight="700" fill="#6b7280" text-anchor="start">FUNDAMENTAL CHALLENGES</text>
+<rect x="0" y="271" width="5" height="5" fill="#1e3a8a"/>
+<text x="13" y="278" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Representation</text>
+<rect x="0" y="292" width="5" height="5" fill="#1e3a8a"/>
+<text x="13" y="299" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Classification</text>
+<rect x="0" y="313" width="5" height="5" fill="#1e3a8a"/>
+<text x="13" y="320" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Prediction</text>
+<rect x="190" y="271" width="5" height="5" fill="#1e3a8a"/>
+<text x="203" y="278" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Causal analysis</text>
+<rect x="190" y="292" width="5" height="5" fill="#1e3a8a"/>
+<text x="203" y="299" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Multimodal learning</text>
+<text x="0" y="387" font-size="22" font-weight="700" fill="#1e3a8a" text-anchor="start">02</text>
+<text x="40" y="376" font-size="15" font-weight="700" fill="#111827" text-anchor="start">Research focus</text>
+<text x="40" y="392" font-size="11" font-weight="400" fill="#6b7280" text-anchor="start">new theories and algorithms</text>
+<line x1="0" y1="407" x2="380" y2="407" stroke="#111827"/>
+<rect x="0" y="429" width="121" height="48" fill="#eef2fa" stroke="#8ea2cf"/>
+<text x="61" y="458" font-size="13" font-weight="700" fill="#1e3a8a" text-anchor="middle">Theory</text>
+<rect x="129" y="429" width="121" height="48" fill="#eef2fa" stroke="#8ea2cf"/>
+<text x="190" y="458" font-size="13" font-weight="700" fill="#1e3a8a" text-anchor="middle">Algorithms</text>
+<rect x="259" y="429" width="121" height="48" fill="#eef2fa" stroke="#8ea2cf"/>
+<text x="319" y="458" font-size="13" font-weight="700" fill="#1e3a8a" text-anchor="middle">Applications</text>
+<text x="0" y="505" font-size="10" font-weight="700" fill="#6b7280" text-anchor="start">EMERGING DIRECTIONS</text>
+<rect x="0" y="520" width="5" height="5" fill="#1e3a8a"/>
+<text x="13" y="527" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Foundation models &amp; LLMs</text>
+<rect x="0" y="541" width="5" height="5" fill="#1e3a8a"/>
+<text x="13" y="548" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Multimodal learning</text>
+<rect x="0" y="562" width="5" height="5" fill="#1e3a8a"/>
+<text x="13" y="569" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Agentic AI</text>
+<text x="0" y="598" font-size="10" font-weight="700" fill="#6b7280" text-anchor="start">BRINGING TOGETHER</text>
+<text x="0" y="620" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Academia · Industry · Policymakers</text>
+<text x="0" y="641" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Machine learning · Data science</text>
+<text x="0" y="662" font-size="12.5" font-weight="400" fill="#111827" text-anchor="start">Statistics · Econometrics</text>
+<text x="0" y="726" font-size="22" font-weight="700" fill="#1e3a8a" text-anchor="start">03</text>
+<text x="40" y="715" font-size="15" font-weight="700" fill="#111827" text-anchor="start">Workshop format</text>
+<text x="40" y="731" font-size="11" font-weight="400" fill="#6b7280" text-anchor="start">a full-day program at AAAI'27</text>
+<line x1="0" y1="746" x2="380" y2="746" stroke="#111827"/>
+<rect x="0" y="772" width="3" height="34" fill="#1e3a8a"/>
+<text x="16" y="786" font-size="13.5" font-weight="700" fill="#111827" text-anchor="start">Keynote talks</text>
+<text x="16" y="804" font-size="11.5" font-weight="400" fill="#4b5563" text-anchor="start">Five invited talks from academia and industry</text>
+<line x1="0" y1="818" x2="380" y2="818" stroke="#d9dee7"/>
+<rect x="0" y="830" width="3" height="34" fill="#1e3a8a"/>
+<text x="16" y="844" font-size="13.5" font-weight="700" fill="#111827" text-anchor="start">Oral &amp; poster papers</text>
+<text x="16" y="862" font-size="11.5" font-weight="400" fill="#4b5563" text-anchor="start">8-min talk + 2-min Q&amp;A · poster session</text>
+<line x1="0" y1="876" x2="380" y2="876" stroke="#d9dee7"/>
+<rect x="0" y="888" width="3" height="34" fill="#1e3a8a"/>
+<text x="16" y="902" font-size="13.5" font-weight="700" fill="#111827" text-anchor="start">Award Ceremony</text>
+<text x="16" y="920" font-size="11.5" font-weight="400" fill="#4b5563" text-anchor="start">3:20 pm - 3:30 pm</text>
+<line x1="0" y1="934" x2="380" y2="934" stroke="#d9dee7"/>
+<rect x="0" y="946" width="3" height="34" fill="#1e3a8a"/>
+<text x="16" y="960" font-size="13.5" font-weight="700" fill="#111827" text-anchor="start">Panel discussion</text>
+<text x="16" y="978" font-size="11.5" font-weight="400" fill="#4b5563" text-anchor="start">Moderator: Dongjin Song</text>
+<line x1="0" y1="1024" x2="380" y2="1024" stroke="#111827"/>
+<text x="0" y="1046" font-size="10" font-weight="700" fill="#6b7280" text-anchor="start">THE AI4TS WORKSHOP SERIES</text>
+<line x1="8" y1="1072" x2="8" y2="1280" stroke="#d9dee7" stroke-width="2"/>
+<circle cx="8" cy="1072" r="5" fill="#fff" stroke="#6b7280" stroke-width="1.6"/>
+<text x="28" y="1076" font-size="12" font-weight="600" fill="#4b5563" text-anchor="start">IJCAI'22</text>
+<circle cx="8" cy="1098" r="5" fill="#fff" stroke="#6b7280" stroke-width="1.6"/>
+<text x="28" y="1102" font-size="12" font-weight="600" fill="#4b5563" text-anchor="start">IJCAI'23</text>
+<circle cx="8" cy="1124" r="5" fill="#fff" stroke="#6b7280" stroke-width="1.6"/>
+<text x="28" y="1128" font-size="12" font-weight="600" fill="#4b5563" text-anchor="start">ICDM'23</text>
+<circle cx="8" cy="1150" r="5" fill="#fff" stroke="#6b7280" stroke-width="1.6"/>
+<text x="28" y="1154" font-size="12" font-weight="600" fill="#4b5563" text-anchor="start">AAAI'24</text>
+<circle cx="8" cy="1176" r="5" fill="#fff" stroke="#6b7280" stroke-width="1.6"/>
+<text x="28" y="1180" font-size="12" font-weight="600" fill="#4b5563" text-anchor="start">IJCAI'24</text>
+<circle cx="8" cy="1202" r="5" fill="#fff" stroke="#6b7280" stroke-width="1.6"/>
+<text x="28" y="1206" font-size="12" font-weight="600" fill="#4b5563" text-anchor="start">AAAI'25</text>
+<circle cx="8" cy="1228" r="5" fill="#fff" stroke="#6b7280" stroke-width="1.6"/>
+<text x="28" y="1232" font-size="12" font-weight="600" fill="#4b5563" text-anchor="start">WebConf'25</text>
+<circle cx="8" cy="1254" r="5" fill="#fff" stroke="#6b7280" stroke-width="1.6"/>
+<text x="28" y="1258" font-size="12" font-weight="600" fill="#4b5563" text-anchor="start">AAAI'26</text>
+<circle cx="8" cy="1280" r="6" fill="#1e3a8a"/>
+<text x="28" y="1285" font-size="13" font-weight="700" fill="#1e3a8a" text-anchor="start">AAAI'27 · Montreal, Canada</text>
 </svg>
           <figcaption>Workshop overview: motivation, research focus, the full-day program, and the AI4TS workshop series.</figcaption>
         </figure>
@@ -597,7 +544,7 @@
           <div class="day-title">The day at a glance · Time (EST)</div>
           <div class="day-bar"><div class="m" style="flex:5" title="Opening Remarks"></div><div class="k" style="flex:40" title="Keynote Talk 1">Keynote 1</div><div class="o" style="flex:50" title="Oral Paper Presentations">Oral 1-5</div><div class="b" style="flex:15" title="Coffee Break"></div><div class="k" style="flex:40" title="Keynote Talk 2">Keynote 2</div><div class="k" style="flex:40" title="Keynote Talk 3">Keynote 3</div><div class="b" style="flex:110" title="Lunch Break">Lunch</div><div class="k" style="flex:40" title="Keynote Talk 4">Keynote 4</div><div class="k" style="flex:40" title="Keynote Talk 5">Keynote 5</div><div class="m" style="flex:10" title="Award Ceremony"></div><div class="b" style="flex:20" title="Coffee Break"></div><div class="p" style="flex:40" title="Panel Discussion">Panel</div><div class="s" style="flex:90" title="Poster Session">Posters</div></div>
           <div class="day-ticks"><span style="left:0.000%">9:00</span><span style="left:11.111%">10:00</span><span style="left:22.222%">11:00</span><span style="left:33.333%">12:00</span><span style="left:44.444%">1:00</span><span style="left:55.556%">2:00</span><span style="left:66.667%">3:00</span><span style="left:77.778%">4:00</span><span style="left:88.889%">5:00</span><span style="left:100.000%">6:00</span></div>
-          <div class="day-legend"><span><i style="background:#1d4ed8"></i>Keynote Talks</span><span><i style="background:#0f766e"></i>Oral Paper Presentations</span><span><i style="background:#b4441f"></i>Panel Discussion</span><span><i style="background:#7c3aed"></i>Poster Session</span><span><i style="background:#9ca3af"></i>Opening / Award Ceremony</span><span><i style="background:#e5e7eb"></i>Breaks</span></div>
+          <div class="day-legend"><span><i style="background:#1e3a8a"></i>Keynote Talks</span><span><i style="background:#4a66b3"></i>Oral Paper Presentations</span><span><i style="background:#7f96cc"></i>Panel Discussion</span><span><i style="background:#c9d6f2"></i>Poster Session</span><span><i style="background:#d9dee7"></i>Opening Remarks / Award Ceremony</span><span><i style="background:#eceff3;outline:1px solid #d9dee7"></i>Breaks</span></div>
         </div>
         <div class="two-col" style="grid-template-columns: 1.6fr .7fr">
           <table class="sched">
